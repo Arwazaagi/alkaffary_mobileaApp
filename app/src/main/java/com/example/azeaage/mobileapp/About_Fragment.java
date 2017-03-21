@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 public class About_Fragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-
+//test comment 
     public About_Fragment() {
         // Required empty public constructor
     }
