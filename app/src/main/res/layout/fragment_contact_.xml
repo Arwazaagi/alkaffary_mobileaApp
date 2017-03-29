@@ -1,13 +1,80 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="90dp"
+    android:orientation="vertical"
+    android:weightSum="1"
     tools:context="com.example.azeaage.mobileapp.Contact_Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/Call_Link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/phoneButton"
+        android:layout_weight="0.06"
+        android:text="Call Center " />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="358dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/CallCenter"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_weight="0.06"
+        android:text="From : :00 am To  :00 pm " />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="47dp">
+
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/phoneButton"
+            android:layout_alignLeft="@+id/phoneButton"
+            android:layout_alignStart="@+id/phoneButton"
+            android:layout_marginLeft="37dp"
+            android:layout_marginStart="37dp"
+            android:text="920025554"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/phoneButton"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:clickable="true"
+            android:scaleType="fitStart"
+            android:src="@drawable/ic_phone_black_24dp" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_weight="0.06"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <ExpandableListView
+            android:id="@+id/expandableListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+            android:divider="@android:color/darker_gray"
+            android:dividerHeight="0.5dp"
+
+            />
+    </LinearLayout>
+
+</LinearLayout>

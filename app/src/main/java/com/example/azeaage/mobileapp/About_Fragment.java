@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -29,7 +30,10 @@ public class About_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         onButtonPressed("About us");
-        return inflater.inflate(R.layout.fragment_about_, container, false);
+        View view= inflater.inflate(R.layout.fragment_about_, container, false);
+
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
