@@ -2,12 +2,223 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="50dp"
     tools:context="com.example.azeaage.mobileapp.About_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="12dp"
+                    android:text="History :" />
+
+                <TextView
+                    android:id="@+id/high"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/history"
+                    android:layout_marginTop="10dp"
+                    android:text="High Point is the first brand of the Kaffari Group, an extension of the Group's success and development, one of its objectives We offer the finest designs for an integrated and distinctive home furniture. Parquet. Wall paper. Accessories. Artificial grass. Orak decor in a modern fashion wonderful self-pleased and happy" />
+
+                <TextView
+                    android:id="@+id/ServiceEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/high"
+                    android:layout_marginTop="10dp"
+                    android:text="Vision and Mission : " />
+
+                <TextView
+                    android:id="@+id/goal2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/goal1"
+                    android:layout_marginTop="4dp"
+                    android:text="2-Offering the best deals suitable for projects of public and private sectors ." />
+
+                <TextView
+                    android:id="@+id/vision"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/ServiceEditText"
+                    android:layout_marginTop="10dp"
+                    android:text="To be the first name that means confidence in the world of furniture and household equipment in the Middle East." />
+
+                <TextView
+                    android:id="@+id/goal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerVertical="true"
+                    android:text="Our Goals :" />
+
+                <TextView
+                    android:id="@+id/goal1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textView15"
+                    android:layout_marginTop="10dp"
+                    android:text="1-Qualitative integration of our activities." />
+
+                <TextView
+                    android:id="@+id/goal3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/goal2"
+                    android:layout_marginTop="4dp"
+                    android:text="3-Maintaining the first place, and our leader mark in the field of carpet, flooring, and classic furniture ." />
+                <TextView
+                    android:id="@+id/goal4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/goal3"
+                    android:layout_marginTop="4dp"
+                    android:text="4-Meet the needs of our customers with quality and accuracy by providing all the requirements with a high level of modernization and development." />
+                <TextView
+                    android:id="@+id/goal5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/goal4"
+                    android:layout_marginTop="4dp"
+                    android:text="5-Meet the needs of the market, and work to satisfy these needs by diversifying our goods and services." />
+                <TextView
+                    android:id="@+id/goal6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/goal5"
+                    android:layout_marginTop="4dp"
+                    android:text="6-Protect our competitiveness, and work to increase over the strategies that fit existing customers and potential customers." />
+
+                <TextView
+                    android:id="@+id/Service1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/goal3"
+                    android:layout_marginTop="10dp"
+                    android:text="Service :" />
+
+                <TextView
+                    android:id="@+id/Service2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textView20"
+                    android:layout_marginTop="4dp"
+                    android:text="1-Installment Service" />
+
+                <TextView
+                    android:id="@+id/Service3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textView21"
+                    android:layout_marginTop="4dp"
+                    android:text="2-Replacement and retrieval service" />
+
+                <TextView
+                    android:id="@+id/Service4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textView21"
+                    android:layout_marginTop="4dp"
+                    android:text="3-Delivery service" />
+
+                <TextView
+                    android:id="@+id/Service5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textView21"
+                    android:layout_marginTop="4dp"
+                    android:text="4-Installation service" />
+
+                <TextView
+                    android:id="@+id/Service6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textView21"
+                    android:layout_marginTop="4dp"
+                    android:text="5-Store the purchased furniture" />
+
+                <TextView
+                    android:id="@+id/Service7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textView21"
+                    android:layout_marginTop="4dp"
+                    android:text="6-Guarantee" />
+
+                <TextView
+                    android:id="@+id/Service8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textView21"
+                    android:layout_marginTop="4dp"
+                    android:text="7-Maintenance maintenance is free for one year, according to the conditions shown on the invoice" />
+                <TextView
+                    android:id="@+id/Service9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textView21"
+                    android:layout_marginTop="4dp"
+                    android:text="7-Consulting" />
+            </LinearLayout>
+        </ScrollView>
+
+
+
+    </RelativeLayout>
 
 </FrameLayout>

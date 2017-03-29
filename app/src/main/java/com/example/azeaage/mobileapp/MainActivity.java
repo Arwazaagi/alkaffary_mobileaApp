@@ -158,7 +158,6 @@ About_Fragment.OnFragmentInteractionListener{
             Contact_Fragment contact_fragment= new Contact_Fragment();
             FragmentManager manager=getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.RelativeLayout_for_Fragment,contact_fragment,contact_fragment.getTag()).commit();
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
