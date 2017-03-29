@@ -1,7 +1,6 @@
 package com.example.azeaage.mobileapp;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -70,4 +69,6 @@ public class Wholesale_Fragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(String data);
     }
+
+
 }

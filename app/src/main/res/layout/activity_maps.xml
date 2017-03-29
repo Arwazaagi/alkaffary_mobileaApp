@@ -1,0 +1,45 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout">
+
+        <EditText
+        android:id="@+id/search"
+        android:layout_width="286dp"
+        android:layout_height="match_parent"
+        android:text="" />
+
+        <Button
+            android:id="@+id/search_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Button" />
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="397dp"
+        tools:context="com.example.azeaage.mobileapp.MapsActivity"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/continuous_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Continuous" />
+
+
+</LinearLayout>

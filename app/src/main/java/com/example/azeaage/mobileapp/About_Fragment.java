@@ -1,7 +1,6 @@
 package com.example.azeaage.mobileapp;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,7 +17,7 @@ import android.view.ViewGroup;
 public class About_Fragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-//test comment 
+//test comment
     public About_Fragment() {
         // Required empty public constructor
     }
