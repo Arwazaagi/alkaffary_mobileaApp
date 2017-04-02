@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,18 +16,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         Offers_Fragment.OnFragmentInteractionListener,
-Products_Fragment.OnFragmentInteractionListener,
-Maintenance_Fragment.OnFragmentInteractionListener,
-Wholesale_Fragment.OnFragmentInteractionListener,
-Stores_Fragmant.OnFragmentInteractionListener,
-Contact_Fragment.OnFragmentInteractionListener,
-About_Fragment.OnFragmentInteractionListener{
+        Products_Fragment.OnFragmentInteractionListener,
+        Maintenance_Fragment.OnFragmentInteractionListener,
+        Wholesale_Fragment.OnFragmentInteractionListener,
+        Stores_Fragmant.OnFragmentInteractionListener,
+        Contact_Fragment.OnFragmentInteractionListener,
+        About_Fragment.OnFragmentInteractionListener{
 
     @Override
     public void onFragmentInteraction(String data) {
@@ -86,6 +87,31 @@ About_Fragment.OnFragmentInteractionListener{
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        View headerView = getLayoutInflater().inflate(R.layout.nav_header_main, navigationView);
+        TextView nameTV= (TextView)headerView.findViewById(R.id.name);
+        nameTV.setText("Arwa alzeaagi");
+        ImageView imageView =(ImageView)headerView.findViewById(R.id.imageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profile_intent =new Intent(getApplication(), Profile.class);
+                startActivity(profile_intent);
+                System.out.println("dfhajksdk66666666666666666666666");
+            }
+        });
+      /*  LinearLayout linearLayout =(LinearLayout)headerView.findViewById(R.id.profile_nav);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent shopping_intent =new Intent(getApplication(), shopping_cart.class);
+                startActivity(shopping_intent);
+                System.out.println("dfhajksdk66666666666666666666666");
+            }
+        });*/
+
+
     }
 
     @Override
@@ -102,6 +128,7 @@ About_Fragment.OnFragmentInteractionListener{
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
         return true;
     }
 
@@ -158,10 +185,18 @@ About_Fragment.OnFragmentInteractionListener{
             Contact_Fragment contact_fragment= new Contact_Fragment();
             FragmentManager manager=getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.RelativeLayout_for_Fragment,contact_fragment,contact_fragment.getTag()).commit();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
+    }
+    //form open new fragment
+    private void openFragment(Fragment fragment,int fragmentId){
+        FragmentManager manager=getSupportFragmentManager();
+        manager.beginTransaction().replace(fragmentId,fragment,fragment.getTag()).commit();
+
     }
 }

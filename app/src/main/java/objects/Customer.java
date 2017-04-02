@@ -1,4 +1,4 @@
-package com.example.azeaage.mobileapp;
+package objects;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -6,35 +6,35 @@ import com.google.android.gms.maps.model.LatLng;
  * Created by AZeaage on 3/26/2017.
  */
 
-public class User {
+public class Customer {
     private String first_name ;
     private String last_name ;
     private String email ;
     private String phone ;
     private String password ;
-    private LatLng latLng;
+    private LatLng coordinates;
 
 
 
-    public User() {
+    public Customer() {
         this.first_name = "";
         this.last_name = "";
         this.email = "";
         this.phone = "";
         this.password = "";
-        this.latLng = null;
+        this.coordinates = null;
     }
 
-    public User(String first_name, String last_name, String email, String phone, String password, LatLng latLng) {
+    public Customer(String first_name, String last_name, String email, String phone, String password, LatLng coordinates) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
         this.phone = phone;
         this.password = password;
-        this.latLng = latLng;
+        this.coordinates = coordinates;
     }
 
-    public User(String first_name, String last_name, String email, String phone, String password) {
+    public Customer(String first_name, String last_name, String email, String phone, String password) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
@@ -42,11 +42,11 @@ public class User {
         this.password = password;
     }
     public LatLng getLatLng() {
-        return latLng;
+        return coordinates;
     }
 
-    public void setLatLng(LatLng latLng) {
-        this.latLng = latLng;
+    public void setLatLng(LatLng coordinates) {
+        this.coordinates = coordinates;
     }
     public String getFirst_name() {
         return first_name;
@@ -96,7 +96,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", password='" + password + '\'' +
-                ", latLng=" + latLng +
+                ", coordinates=" + coordinates +
                 '}';
     }
 }

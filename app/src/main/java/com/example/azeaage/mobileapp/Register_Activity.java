@@ -16,6 +16,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
+import objects.Customer;
+
 public class Register_Activity extends AppCompatActivity {
     // UI references.
     private AutoCompleteTextView first_name_tv;
@@ -26,7 +28,7 @@ public class Register_Activity extends AppCompatActivity {
     private Button submit;
     private BroadcastReceiver broadcastReceiver;
     String location ="";
-    public static User new_user;
+    public static Customer new_Customer;
 
     String first_Name,last_Name,Email,Phone_number,Password;
     @Override
@@ -50,18 +52,19 @@ public class Register_Activity extends AppCompatActivity {
                 Email=email_tv.getText().toString();
                 Phone_number=phone_tv.getText().toString();
                 Password=password_et.getText().toString();
-                new_user=new User(first_Name,last_Name,Email,Phone_number,Password);
-                System.out.println(new_user+"^^^^^^^^^^^^^^^^^^^^^");
+                new_Customer=new Customer(first_Name,last_Name,Email,Phone_number,Password);
+                System.out.println(new_Customer+"^^^^^^^^^^^^^^^^^^^^^");
                 if(!runtime_permissions()){
                     //We dont need permissions
                     MapsActivity mapsActivity = new MapsActivity();
-                    mapsActivity.setUser(new_user);
+                    mapsActivity.setCustomer(new_Customer);
                     Intent maps_intent = new Intent(getApplication(), MapsActivity.class);
 
                     // set Fragmentclass Arguments
 
 
                     startActivity(maps_intent);
+                    finish();
                 }            }
         });
 

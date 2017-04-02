@@ -1,19 +1,10 @@
 package com.example.azeaage.mobileapp;
 
 import android.content.Intent;
-import android.media.Image;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 public class Start extends AppCompatActivity implements View.OnClickListener {
 
@@ -42,14 +33,17 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
             case  R.id.button_login :
                 Intent login_intent = new Intent(getApplication(), LoginActivity.class);
                 startActivity(login_intent);
+                finish();
                 break;
             case R.id.button_guest:
                 Intent main_intent = new Intent(getApplication(), MainActivity.class);
                 startActivity(main_intent);
+                finish();
                 break;
             case R.id.button_register:
                 Intent register_intent = new Intent(getApplication(), Register_Activity.class);
                 startActivity(register_intent);
+                finish();
                 break;
 
         }

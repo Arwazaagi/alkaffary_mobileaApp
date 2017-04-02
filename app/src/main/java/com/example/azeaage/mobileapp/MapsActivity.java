@@ -33,25 +33,27 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 
+import objects.Customer;
+
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
 
     private GoogleMap mMap;
     private BroadcastReceiver broadcastReceiver;
     String location ="";
-    User user;
+    Customer customer;
     private LatLng center;
     private Circle circle;
     private MarkerOptions marker;
     EditText location_et;
     Button continuous_button,search_b;
 
-    public User getUser() {
-        return user;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCustomer(Customer user) {
+        this.customer = user;
     }
 
     @Override
@@ -85,6 +87,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
         // Assume thisActivity is the current activity
         int permissionCheck = ContextCompat.checkSelfPermission(MapsActivity.this,
                 Manifest.permission.WRITE_CALENDAR);
@@ -93,7 +96,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this); //this method will start the map service
          location_et =(EditText)findViewById(R.id.search);
-        user=Register_Activity.new_user;
+        customer=Register_Activity.new_Customer;
         search_b= (Button)findViewById(R.id.search_b);
         continuous_button=(Button)findViewById(R.id.continuous_button);
         search_b.setOnClickListener(this);
@@ -162,7 +165,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             marker=new MarkerOptions().position(latLng).title("Marker");
             mMap.addMarker(marker);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-            user.setLatLng(latLng);}
+            customer.setLatLng(latLng);}
         }
         else{
 
@@ -256,17 +259,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         currentLocation.setLongitude(location.getLongitude());
         //set the location for the user
         LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
-        user.setLatLng(latLng);
+        customer.setLatLng(latLng);
         if(marker!=null){
             mMap.clear();
         }
 
             marker = new MarkerOptions().position(latLng).title("your location ");
             mMap.addMarker(marker);
-
-            System.out.println("user_Name&&&&&&&&&&&" + user);
-
-
+            System.out.println("user_Name&&&&&&&&&&&" + customer);
     }
 
     @Override
@@ -278,6 +278,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         {
             Intent main_intent = new Intent(this,MainActivity.class);
             startActivity(main_intent);
+            finish();
         }
     }
 }

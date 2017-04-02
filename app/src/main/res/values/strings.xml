@@ -47,6 +47,8 @@
     <string name="lostpassword">If you lost your password please contact <a href="mailto:support@cleverfinger.com.au?Subject=Lost%20Password" target="_top">send an email </a></string>
     <string name="my_link"><a href="https://twitter.com/HighPoint_SA?lang=ar">twitter highpint!</a></string>
     <string name="register_button_title">Register</string>
+    <string name="title_edit_profile">Edit Profile</string>
+    <string name="title_orders">Orders</string>
 
 
 </resources>
