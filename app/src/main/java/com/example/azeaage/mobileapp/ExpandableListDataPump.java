@@ -25,7 +25,7 @@ public class ExpandableListDataPump {
                 List<String>Snapchat_medai =new ArrayList<String>();
                 Snapchat_medai.add("Follow us on snapchat");
                 List<String> Whatsapp_medai =new ArrayList<String>();
-                Whatsapp_medai.add("Text");
+                Whatsapp_medai.add("+966 543535777");
                 expandableListDetail.put("Twitter",Twitter_medai);
                 expandableListDetail.put("Instgram",Instgram_medai);
                 expandableListDetail.put("Snapchat",Snapchat_medai);
