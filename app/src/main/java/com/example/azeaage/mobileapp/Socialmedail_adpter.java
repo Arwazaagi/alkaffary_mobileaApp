@@ -3,11 +3,13 @@ package com.example.azeaage.mobileapp;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -91,10 +93,32 @@ public class Socialmedail_adpter extends BaseExpandableListAdapter implements Vi
             convertView = layoutInflater.inflate(R.layout.parent_layout, null);
 
         }
-        TextView listTitleTextView = (TextView) convertView
-                .findViewById(R.id.parent_txt);
+        TextView listTitleTextView = (TextView) convertView.findViewById(R.id.parent_txt);
         listTitleTextView.setTypeface(null, Typeface.BOLD);
         listTitleTextView.setText(listTitle);
+        ImageView imageView = (ImageView)convertView.findViewById(R.id.image_social);
+
+        if(listTitle.equals("Twitter"))
+        {
+            imageView.setImageResource(R.drawable.twitter)  ;
+        } else
+        if(listTitle.equals("Instgram"))
+        {
+            imageView.setImageResource(R.drawable.instgram)  ;
+        } else
+        if (listTitle.equals("Snapchat"))
+        {
+            imageView.setImageResource(R.drawable.snapchat);
+        } else
+        if (listTitle.equals("Facebook"))
+        {
+            imageView.setImageResource(R.drawable.facebook);
+        }else
+        if(listTitle.equals("Whatsapp"))
+        {
+            imageView.setImageResource(R.drawable.whatsapp);
+        }
+
         return convertView;
 
 
@@ -112,11 +136,9 @@ public class Socialmedail_adpter extends BaseExpandableListAdapter implements Vi
             convertView = layoutInflater.inflate(R.layout.child_layout, null);
 
         }
-        expandedListTextView = (TextView) convertView
-                .findViewById(R.id.child_text);
+        expandedListTextView = (TextView) convertView.findViewById(R.id.child_text);
         expandedListTextView.setText(expandedListText);
         expandedListTextView.setOnClickListener(this);
-
 
 
 
