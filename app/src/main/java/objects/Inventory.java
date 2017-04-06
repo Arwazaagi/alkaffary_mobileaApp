@@ -1,10 +1,12 @@
 package objects;
 
+import java.io.Serializable;
+
 /**
  * Created by AZeaage on 4/2/2017.
  */
 
-public class Inventory {
+public class Inventory implements Serializable{
     private int ProductCode;
     private int BranchCode;
     private int InventoryQty;
@@ -37,6 +39,15 @@ public class Inventory {
 
     public void setInventoryQty(int inventoryQty) {
         InventoryQty = inventoryQty;
+    }
+
+    @Override
+    public String toString() {
+        return "Inventory{" +
+                "ProductCode=" + ProductCode +
+                ", BranchCode=" + BranchCode +
+                ", InventoryQty=" + InventoryQty +
+                '}';
     }
 }
 

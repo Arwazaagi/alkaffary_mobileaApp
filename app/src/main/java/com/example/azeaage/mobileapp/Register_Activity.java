@@ -40,7 +40,7 @@ public class Register_Activity extends AppCompatActivity {
         last_name_tv=(AutoCompleteTextView)findViewById(R.id.last_name);
         email_tv=(AutoCompleteTextView)findViewById(R.id.email);
         password_et =(EditText)findViewById(R.id.password);
-        phone_tv=(AutoCompleteTextView)findViewById(R.id.phone_number);
+        phone_tv=(AutoCompleteTextView)findViewById(R.id.phone_number1);
         submit =(Button)findViewById(R.id.register_button);
         runtime_permissions();
         submit.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +53,7 @@ public class Register_Activity extends AppCompatActivity {
                 Phone_number=phone_tv.getText().toString();
                 Password=password_et.getText().toString();
                 new_Customer=new Customer(first_Name,last_Name,Email,Phone_number,Password);
-                System.out.println(new_Customer+"^^^^^^^^^^^^^^^^^^^^^");
+
                 if(!runtime_permissions()){
                     //We dont need permissions
                     MapsActivity mapsActivity = new MapsActivity();

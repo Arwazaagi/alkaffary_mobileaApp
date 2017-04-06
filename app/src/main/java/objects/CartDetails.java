@@ -1,12 +1,13 @@
 package objects;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  * Created by AZeaage on 4/2/2017.
  */
 
-public class CartDetails {
+public class CartDetails implements Serializable{
     private int RecordID;
     private String UOM;
     private int Qty;
@@ -69,5 +70,17 @@ public class CartDetails {
 
     public void setRequiredDate(Date requiredDate) {
         RequiredDate = requiredDate;
+    }
+
+    @Override
+    public String toString() {
+        return "CartDetails{" +
+                "RecordID=" + RecordID +
+                ", UOM='" + UOM + '\'' +
+                ", Qty=" + Qty +
+                ", Price=" + Price +
+                ", LineTotal=" + LineTotal +
+                ", RequiredDate=" + RequiredDate +
+                '}';
     }
 }

@@ -47,6 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private MarkerOptions marker;
     EditText location_et;
     Button continuous_button,search_b;
+    String url="http://hr.alkaffary.com:664/AlKaffaryMobileService.svc?wsdl";
 
     public Customer getCustomer() {
         return customer;
@@ -276,6 +277,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         onSearch(v);
         else if(v.getId()==R.id.continuous_button)
         {
+
             Intent main_intent = new Intent(this,MainActivity.class);
             startActivity(main_intent);
             finish();

@@ -2,13 +2,15 @@ package objects;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  * Created by AZeaage on 3/30/2017.
  */
 
-public class SalesOrders {
+public class SalesOrders implements Serializable{
     private int OrderId;
     private Date OrderDate;
     private String ShippingAddress;
@@ -23,14 +25,15 @@ public class SalesOrders {
     private String LastModifiedBy;
     private Date LastModificationDate;
     private Customer customer;
-    private SalesOrderDetails salesOrderDetails;
+    private ArrayList<SalesOrderDetails> salesOrderDetails;
     private SalesOrderStatusTra salesOrderStatusTra;
+    private int mData;
 
-    public SalesOrderDetails getSalesOrderDetails() {
+    public ArrayList<SalesOrderDetails> getSalesOrderDetails() {
         return salesOrderDetails;
     }
 
-    public void setSalesOrderDetails(SalesOrderDetails salesOrderDetails) {
+    public void setSalesOrderDetails(ArrayList<SalesOrderDetails> salesOrderDetails) {
         this.salesOrderDetails = salesOrderDetails;
     }
 
@@ -169,4 +172,55 @@ public class SalesOrders {
     public void setLastModificationDate(Date lastModificationDate) {
         LastModificationDate = lastModificationDate;
     }
+
+    @Override
+    public String toString() {
+        return "SalesOrders{" +
+                "OrderId=" + OrderId +
+                ", OrderDate=" + OrderDate +
+                ", ShippingAddress='" + ShippingAddress + '\'' +
+                ", ShippingCity='" + ShippingCity + '\'' +
+                ", locationCoordinate=" + locationCoordinate +
+                ", OrderTotal=" + OrderTotal +
+                ", SAPInvoiceNo=" + SAPInvoiceNo +
+                ", CompletionCode='" + CompletionCode + '\'' +
+                ", isCancelled=" + isCancelled +
+                ", CancellationDate=" + CancellationDate +
+                ", CreatedBy='" + CreatedBy + '\'' +
+                ", LastModifiedBy='" + LastModifiedBy + '\'' +
+                ", LastModificationDate=" + LastModificationDate +
+                ", customer=" + customer +
+                ", salesOrderDetails=" + salesOrderDetails +
+                ", salesOrderStatusTra=" + salesOrderStatusTra +
+                ", mData=" + mData +
+                '}';
+    }
+
+/*  @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+    }
+
+
+    public static final Creator<SalesOrders> CREATOR = new Creator<SalesOrders>() {
+        @Override
+        public SalesOrders createFromParcel(Parcel in) {
+            return new SalesOrders(in);
+        }
+
+        @Override
+        public SalesOrders[] newArray(int size) {
+            return new SalesOrders[size];
+        }
+    };
+
+    // example constructor that takes a Parcel and gives you an object populated with it's values
+    private SalesOrders(Parcel in) {
+        mData = in.readInt();
+    }*/
 }

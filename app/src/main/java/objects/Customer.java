@@ -1,12 +1,16 @@
 package objects;
 
+import android.os.Parcel;
+
 import com.google.android.gms.maps.model.LatLng;
+
+import java.io.Serializable;
 
 /**
  * Created by AZeaage on 3/26/2017.
  */
 
-public class Customer {
+public class Customer implements Serializable{
     private String first_name ;
     private String last_name ;
     private String email ;
@@ -41,6 +45,17 @@ public class Customer {
         this.phone = phone;
         this.password = password;
     }
+
+    protected Customer(Parcel in) {
+        first_name = in.readString();
+        last_name = in.readString();
+        email = in.readString();
+        phone = in.readString();
+        password = in.readString();
+        coordinates = in.readParcelable(LatLng.class.getClassLoader());
+    }
+
+
     public LatLng getLatLng() {
         return coordinates;
     }
@@ -99,4 +114,7 @@ public class Customer {
                 ", coordinates=" + coordinates +
                 '}';
     }
+
+
+
 }

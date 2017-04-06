@@ -1,12 +1,13 @@
 package objects;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  * Created by AZeaage on 3/30/2017.
  */
 
-public class SalesOrderStatusTra {
+public class SalesOrderStatusTra implements Serializable{
     private int RecordID;
     private String Comments;
     private Date StatusDateTime;
@@ -51,5 +52,16 @@ public class SalesOrderStatusTra {
 
     public void setStatusUpdatedBy(String statusUpdatedBy) {
         StatusUpdatedBy = statusUpdatedBy;
+    }
+
+    @Override
+    public String toString() {
+        return "SalesOrderStatusTra{" +
+                "RecordID=" + RecordID +
+                ", Comments='" + Comments + '\'' +
+                ", StatusDateTime=" + StatusDateTime +
+                ", StatusUpdatedBy='" + StatusUpdatedBy + '\'' +
+                ", salesOrderStatuses=" + salesOrderStatuses +
+                '}';
     }
 }

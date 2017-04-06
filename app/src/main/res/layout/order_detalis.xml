@@ -96,41 +96,50 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center">
-
             <TextView
-                android:id="@+id/Item_tv"
+                android:id="@+id/Item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="Item " />
+                android:text="Item "
+                android:textColor="@color/colorPrimaryBlack"
+                android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/Unit_cost"
+                android:id="@+id/Unit_cost1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="Unit Cost" />
+                android:text="Unit Cost"
+                android:textColor="@color/colorPrimaryBlack"
+                android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/quintity_tv"
+                android:id="@+id/quintity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="Quinitity" />
+                android:text="Quinitity"
+                android:textColor="@color/colorPrimaryBlack"
+                android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/discount"
+                android:id="@+id/discount1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="Discount" />
+                android:text="Discount"
+                android:textColor="@color/colorPrimaryBlack"
+                android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/Total"
+                android:id="@+id/Total1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="Total" />
+                android:text="Total"
+                android:textColor="@color/colorPrimaryBlack"
+                android:textSize="20dp" />
         </TableRow>
 
 

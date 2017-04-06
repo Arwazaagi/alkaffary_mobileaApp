@@ -1,27 +1,29 @@
 package objects;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  * Created by AZeaage on 3/30/2017.
  */
 
-public class SalesOrderDetails {
+public class SalesOrderDetails implements Serializable{
     private int RecordID;
     private String UOM;
     private int Qty;
     private double Price;
     private double LineTotal;
     private Date RequirementDate;
-    private SalesOrderDetails[] salesOrderDetails;
+    private Products products;
 
-    public SalesOrderDetails(int recordID, String UOM, int qty, double price, double lineTotal, Date requirementDate) {
+    public SalesOrderDetails(int recordID, String UOM, int qty, double price, double lineTotal, Date requirementDate,Products products) {
         RecordID = recordID;
         this.UOM = UOM;
         Qty = qty;
         Price = price;
         LineTotal = lineTotal;
         RequirementDate = requirementDate;
+        this.products=products;
     }
 
     public SalesOrderDetails() {
@@ -81,9 +83,18 @@ public class SalesOrderDetails {
         RequirementDate = requirementDate;
     }
 
+    public Products getProducts() {
+        return products;
+    }
+
+    public void setProducts(Products products) {
+        this.products = products;
+    }
+
     @Override
     public String toString() {
         return "SalesOrderDetails{" +
+
                 "RecordID=" + RecordID +
                 ", UOM='" + UOM + '\'' +
                 ", Qty=" + Qty +

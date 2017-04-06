@@ -35,8 +35,7 @@
             <ListView
                 android:id="@+id/orders_list"
                 android:layout_width="match_parent"
-                android:layout_height="943dp"
-                android:background="@color/colorGry" />
+                android:layout_height="943dp" />
 
         </LinearLayout>
     </ScrollView>
