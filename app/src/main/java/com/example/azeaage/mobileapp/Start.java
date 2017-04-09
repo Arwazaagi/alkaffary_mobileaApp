@@ -31,6 +31,8 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case  R.id.button_login :
+               /*  background background=new background(this);
+                background.execute();*/
                 Intent login_intent = new Intent(getApplication(), LoginActivity.class);
                 startActivity(login_intent);
                 finish();

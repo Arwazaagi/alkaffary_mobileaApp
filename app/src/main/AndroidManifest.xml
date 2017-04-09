@@ -83,6 +83,8 @@
                 android:value="@string/google_maps_key" />
         </activity>
         <activity android:name=".Profile"></activity>
+        <activity android:name=".Order_Details_Activity"></activity>
+        <activity android:name=".product_activity"></activity>
     </application>
 
 </manifest>

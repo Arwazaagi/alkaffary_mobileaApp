@@ -1,12 +1,13 @@
 package objects;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  * Created by AZeaage on 3/30/2017.
  */
 
-public class SalesOrderStatuses {
+public class SalesOrderStatuses implements Serializable {
     private int StatusID;
     private int StatusCode;
     private String StatusDesc;
@@ -87,5 +88,20 @@ public class SalesOrderStatuses {
 
     public void setLastModificationDate(Date lastModificationDate) {
         LastModificationDate = lastModificationDate;
+    }
+
+    @Override
+    public String toString() {
+        return "SalesOrderStatuses{" +
+                "StatusID=" + StatusID +
+                ", StatusCode=" + StatusCode +
+                ", StatusDesc='" + StatusDesc + '\'' +
+                ", isCancelled=" + isCancelled +
+                ", CancellationDate=" + CancellationDate +
+                ", CreatedBy='" + CreatedBy + '\'' +
+                ", CreationDate=" + CreationDate +
+                ", LastModifiedBy='" + LastModifiedBy + '\'' +
+                ", LastModificationDate=" + LastModificationDate +
+                '}';
     }
 }

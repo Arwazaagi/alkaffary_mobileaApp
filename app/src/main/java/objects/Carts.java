@@ -1,12 +1,14 @@
 package objects;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.Arrays;
 
 /**
  * Created by AZeaage on 4/2/2017.
  */
 
-public class Carts {
+public class Carts implements Serializable{
     private int CartId;
     private double CartTotal;
     private boolean isConfirmed;
@@ -62,6 +64,19 @@ public class Carts {
 
     public void setCreationDate(Date creationDate) {
         CreationDate = creationDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Carts{" +
+                "CartId=" + CartId +
+                ", CartTotal=" + CartTotal +
+                ", isConfirmed=" + isConfirmed +
+                ", ConfirmationDate=" + ConfirmationDate +
+                ", CreationDate=" + CreationDate +
+                ", cartDetails=" + cartDetails +
+                ", products=" + Arrays.toString(products) +
+                '}';
     }
 }
 
