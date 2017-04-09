@@ -8,9 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+
 
 public class Products_Fragment extends Fragment {
-
+    private LinkedHashMap<String,BrandInfo> brandlist = new LinkedHashMap<String,BrandInfo>();
+    private DataAdapter listadapter ;
+    private ArrayList<BrandInfo> deptlist = new ArrayList<BrandInfo>();
+    private Products_Fragment expandableListView ;
     private Products_Fragment.OnFragmentInteractionListener mListener;
 
     public Products_Fragment() {
@@ -30,7 +36,7 @@ public class Products_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         onButtonPressed("Products");
-        return inflater.inflate(R.layout.fragment_products_, container, false);
+        return inflater.inflate(R.layout.fragment_expandable_lv, container, false);
     }
 
 
@@ -74,3 +80,4 @@ public class Products_Fragment extends Fragment {
     }
 
 }
+

@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -154,9 +155,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_products) {
-            Products_Fragment products_fragment= new Products_Fragment();
+            ExpandableLVFragment ELVF= new ExpandableLVFragment();
+            Toast.makeText(this,"ExpandableLVFragment",Toast.LENGTH_SHORT).show();
             FragmentManager manager=getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.RelativeLayout_for_Fragment,products_fragment,products_fragment.getTag()).commit();
+            manager.beginTransaction().replace(R.id.RelativeLayout_for_Fragment,ELVF,ELVF.getTag()).commit();
+
         } else if (id == R.id.nav_offers) {
             Offers_Fragment offers_fragment= new Offers_Fragment();
             FragmentManager manager=getSupportFragmentManager();

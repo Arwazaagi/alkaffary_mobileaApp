@@ -1,10 +1,12 @@
 package objects;
 
+import java.io.Serializable;
+
 /**
  * Created by AZeaage on 4/2/2017.
  */
 
-public class Products {
+public class Products implements Serializable {
     private int ProductCode;
     private String ProductName_Ar;
     private String ProductName_En;
@@ -78,4 +80,18 @@ public class Products {
     public void setActive(boolean active) {
         isActive = active;
     }
+
+    @Override
+    public String toString() {
+        return "Products{" +
+                "ProductCode=" + ProductCode +
+                ", ProductName_Ar='" + ProductName_Ar + '\'' +
+                ", ProductName_En='" + ProductName_En + '\'' +
+                ", ProductGroup='" + ProductGroup + '\'' +
+                ", ProductType='" + ProductType + '\'' +
+                ", Price=" + Price +
+                ", isActive=" + isActive +
+                '}';
+    }
 }
+

@@ -6,7 +6,7 @@
     android:layout_marginLeft="20dp"
     android:layout_marginTop="90dp"
     android:orientation="vertical"
-    android:weightSum="1"
+    android:weightSum="2"
     tools:context="com.example.azeaage.mobileapp.Contact_Fragment">
 
     <TextView
@@ -65,6 +65,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0.06"
         android:orientation="vertical">
+
 
         <ExpandableListView
             android:id="@+id/expandableListView"

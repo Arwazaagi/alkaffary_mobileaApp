@@ -48,6 +48,6 @@ public class productList  extends BaseAdapter {
         //orderNumTV.setText(InvoiceNo);
         orderStatus.setText("In process");
 
-        return null;
+        return row;
     }
 }
