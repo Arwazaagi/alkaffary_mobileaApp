@@ -15,6 +15,14 @@ public class Branches implements Serializable{
     private String BranchCity;
     private LatLng coordinates ;
 
+    public Branches(int branchCode, String branchName, String branchAddress, String branchCity, LatLng coordinates) {
+        BranchCode = branchCode;
+        BranchName = branchName;
+        BranchAddress = branchAddress;
+        BranchCity = branchCity;
+        this.coordinates = coordinates;
+    }
+
     public int getBranchCode() {
         return BranchCode;
     }

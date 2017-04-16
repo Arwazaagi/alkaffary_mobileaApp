@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/alkaffary_mobileaApp.iml" filepath="$PROJECT_DIR$/alkaffary_mobileaApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/.idea.iml" filepath="$PROJECT_DIR$/.idea/.idea.iml" />
       <module fileurl="file://$PROJECT_DIR$/alkaffary_mobileaApp.iml" filepath="$PROJECT_DIR$/alkaffary_mobileaApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/libraries/libraries.iml" filepath="$PROJECT_DIR$/.idea/libraries/libraries.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/libraries/mylibs/mylibs.iml" filepath="$PROJECT_DIR$/.idea/libraries/mylibs/mylibs.iml" />
     </modules>
   </component>
 </project>

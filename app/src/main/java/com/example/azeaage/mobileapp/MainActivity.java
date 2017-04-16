@@ -17,7 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
@@ -92,13 +92,13 @@ public class MainActivity extends AppCompatActivity
         View headerView = getLayoutInflater().inflate(R.layout.nav_header_main, navigationView);
         TextView nameTV= (TextView)headerView.findViewById(R.id.name);
         nameTV.setText("Arwa alzeaagi");
-        ImageView imageView =(ImageView)headerView.findViewById(R.id.imageView);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        LinearLayout linearLayout =(LinearLayout) headerView.findViewById(R.id.profile_nav);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent profile_intent =new Intent(getApplication(), Profile.class);
                 startActivity(profile_intent);
-                System.out.println("dfhajksdk66666666666666666666666");
+
             }
         });
       /*  LinearLayout linearLayout =(LinearLayout)headerView.findViewById(R.id.profile_nav);
@@ -179,8 +179,6 @@ public class MainActivity extends AppCompatActivity
             About_Fragment about_fragment= new About_Fragment();
             FragmentManager manager=getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.RelativeLayout_for_Fragment,about_fragment,about_fragment.getTag()).commit();
-
-
         }else if (id == R.id.nav_contact) {
             Contact_Fragment contact_fragment= new Contact_Fragment();
             FragmentManager manager=getSupportFragmentManager();

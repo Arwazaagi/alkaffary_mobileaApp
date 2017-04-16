@@ -8,7 +8,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import objects.Products;
+import objects.SalesOrderDetails;
 import objects.SalesOrders;
 
 /**
@@ -26,18 +29,42 @@ public class Order_Details_Activity extends AppCompatActivity {
         setContentView(R.layout.order_detalis);
         // To retrieve object in second Activity
         Intent i = getIntent();
-        ListView product_list = (ListView)findViewById(R.id.product_list);
+        ListView product_list = (ListView)findViewById(R.id.products_listview);
+
         int position=i.getIntExtra("salesOrder",0);
 
-        branchCode=(TextView)findViewById(R.id.Branch_Code_tv);
-        phoneNum=(TextView)findViewById(R.id.phone_num_tv);
+
         invoiceNum=(TextView)findViewById(R.id.invoice_num_tv);
         creationDate=(TextView)findViewById(R.id.creation_date_tv);
         salesOrders= Profile.salesOrders[position+1];
-        branchCode.setText(salesOrders.getOrderId()+"");
+        TextView[]textViews=new TextView[5];
         invoiceNum.setText(salesOrders.getSAPInvoiceNo()+"");
         creationDate.setText(salesOrders.getOrderDate().toString());
-        product_list.setAdapter(new productList(salesOrders.getSalesOrderDetails(),getApplicationContext()));
+        ArrayList<SalesOrderDetails> salesOrderDetails=salesOrders.getSalesOrderDetails();
+     /*   TableLayout tableLayout = (TableLayout)findViewById(R.id.product_table);
+        for (int a = 0; a <salesOrderDetails.size(); a++)
+        {
+            TableRow tableRow = new TableRow(this);
+            tableRow.setGravity(Gravity.CENTER);
+
+            for (int j = 0; j < 5; j++)
+            {
+                textViews[j]=new TextView(this);
+                textViews[j].setGravity(Gravity.CENTER);
+               // textViews[j].setText(salesOrderDetails.get(a).getRecordID()+"");
+                tableRow.addView(textViews[j]);
+
+            }
+            textViews[0].setText(salesOrderDetails.get(a).getRecordID()+"");
+            textViews[1].setText(salesOrderDetails.get(a).getQty()+"");
+
+            textViews[2].setText(salesOrderDetails.get(a).getPrice()+"RS");
+            textViews[3].setText("20%");
+            textViews[4].setText(salesOrderDetails.get(a).getLineTotal()+"RS");
+            tableLayout.addView(tableRow);
+        }
+       // setContentView(tableLayout);*/
+      product_list.setAdapter(new productList(salesOrders.getSalesOrderDetails(),getApplicationContext()));
 
         product_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

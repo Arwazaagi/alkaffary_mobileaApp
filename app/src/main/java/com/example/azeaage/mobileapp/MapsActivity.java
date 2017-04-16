@@ -21,6 +21,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,6 +33,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import objects.Customer;
 
@@ -47,6 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private MarkerOptions marker;
     EditText location_et;
     Button continuous_button,search_b;
+    private LatLng latLng;
     String url="http://hr.alkaffary.com:664/AlKaffaryMobileService.svc?wsdl";
 
     public Customer getCustomer() {
@@ -88,7 +91,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
+        Intent intent =getIntent();
+        customer=(Customer) intent.getSerializableExtra("customer");
         // Assume thisActivity is the current activity
         int permissionCheck = ContextCompat.checkSelfPermission(MapsActivity.this,
                 Manifest.permission.WRITE_CALENDAR);
@@ -97,23 +101,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this); //this method will start the map service
          location_et =(EditText)findViewById(R.id.search);
-        customer=Register_Activity.new_Customer;
+       // customer=Register_Activity.new_Customer;
+        System.out.println("NewUser"+customer);
         search_b= (Button)findViewById(R.id.search_b);
         continuous_button=(Button)findViewById(R.id.continuous_button);
         search_b.setOnClickListener(this);
         continuous_button.setOnClickListener(this);
 
+
     }
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
         if(requestCode ==100){
+
             if(grantResults[0]==PackageManager.PERMISSION_GRANTED && grantResults[1]==PackageManager.PERMISSION_GRANTED){
                 takeLocation();
-            }
-            else{
-                runtime_permissions();
             }
         }
     }
@@ -141,6 +148,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onResume() {
         super.onResume();
+        runtime_permissions();
 
     }
 
@@ -148,7 +156,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         String location =location_et.getText().toString();
         List<Address>addressesList=null;
-        if(location==null ||location.equals("")){
+        if(location.equals("")){
 
 
             Geocoder geocoder = new Geocoder(this);
@@ -157,8 +165,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            assert addressesList != null;
             Address address = addressesList.get(0);//lat , long
-            LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
+            latLng = new LatLng(address.getLatitude(),address.getLongitude());
             if(marker!=null){
                 mMap.clear();
             }
@@ -166,30 +175,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             marker=new MarkerOptions().position(latLng).title("Marker");
             mMap.addMarker(marker);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-            customer.setLatLng(latLng);}
+            }
         }
-        else{
 
-        }
     }
 
-   /* public void onGpsStatusChanged(int event){
-        switch (event){
-            case GpsStatus.GPS_EVENT_FIRST_FIX:
-                Log.d(getFragmentManager(),"GPS First Fix");
-                break;
-            case GpsStatus.GPS_EVENT_STARTED:
-                Log.d(MapsActivity,"GPS First Started");
-                break;
-            case GpsStatus.GPS_EVENT_STOPPED:
-                Log.d(MapsActivity,"GPS First Stopped");
-                break;
-            case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
-
-                break;
-
-        }
-    }*/
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -216,6 +206,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+        //take the location by click in the map
         mMap.setMyLocationEnabled(true);
         LocationManager locationManager = (LocationManager)
                 getSystemService(Context.LOCATION_SERVICE);
@@ -225,24 +216,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onMapClick(LatLng point) {
                 //Log.d("WorkArea*******","in map onCLICKLISTER @@@@@@@@@@@@@@");
                 // TODO Auto-generated method stub
-                double lat = point.latitude;
-                double lng = point.longitude;
                 center = null;
 
                 //center = new LatLng(lat,lng);// PARAMETER point;
                 center = point;
-                System.out.println("locationnnnn of click &&&&&&&&&&&"+center);
+                System.out.println("locationnnnn of click &&&&&&&&&&&"+customer);
                 if(marker!=null){
                     mMap.clear();
                 }
 
                 marker=new MarkerOptions().position(center).title("your location ");
-
                 mMap.addMarker(marker);
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, 12));
-
-
-
+                //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, 12));
             }
         });
 
@@ -259,15 +244,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         currentLocation.setLatitude(location.getLatitude());
         currentLocation.setLongitude(location.getLongitude());
         //set the location for the user
-        LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
-        customer.setLatLng(latLng);
+        latLng = new LatLng(location.getLatitude(),location.getLongitude());
+
         if(marker!=null){
             mMap.clear();
         }
 
             marker = new MarkerOptions().position(latLng).title("your location ");
             mMap.addMarker(marker);
-            System.out.println("user_Name&&&&&&&&&&&" + customer);
+
     }
 
     @Override
@@ -277,7 +262,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         onSearch(v);
         else if(v.getId()==R.id.continuous_button)
         {
-
+            customer.setLatLng(latLng);
+            background b=new background(this);
+            try {
+                String result= b.execute("register",customer.getFull_name(),customer.getEmail(),customer.getFirstPhone(),customer.getSecondPhone(),customer.getPassword(),"Riyadh","Riyadh",customer.getCoordinates().toString()).get();
+                Toast.makeText(this,result,Toast.LENGTH_LONG).show();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+            //insert the customer to database
             Intent main_intent = new Intent(this,MainActivity.class);
             startActivity(main_intent);
             finish();

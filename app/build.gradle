@@ -29,7 +29,8 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:support-v4:25.3.0'
     compile 'com.google.android.gms:play-services-maps:10.2.0'
-    testCompile 'junit:junit:4.12'
     compile 'com.hrules:horizontalnumberpicker:1.1.1'
-    compile files('build/generated/libs/ksoap2-android-assembly-2.4-jar-with-dependencies.jar')
+    testCompile 'junit:junit:4.12'
+
+    compile files('C:/Users/Azeaage/Downloads/folding-cell-android-master/alkaffary_mobileaApp/.idea/libraries/mylibs/ksoap2-android-assembly-2.5.8-jar-with-dependencies.jar')
 }

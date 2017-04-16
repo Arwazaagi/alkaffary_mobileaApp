@@ -46,14 +46,17 @@ public class productList  extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
+
         View row = inflater.inflate(R.layout.product_details, parent,false);
-        TextView itemNum=(TextView)row.findViewById(R.id.Item_tv);
-        TextView cost =(TextView)row.findViewById(R.id.Unit_cost);
-        TextView quantity =(TextView)row.findViewById(R.id.quintity_tv);
-        TextView discount =(TextView)row.findViewById(R.id.discount);
-        TextView total =(TextView)row.findViewById(R.id.Total);
+        TextView itemNum=(TextView)row.findViewById(R.id.Item);
+        TextView itemName=(TextView)row.findViewById(R.id.ItemName);
+        TextView cost =(TextView)row.findViewById(R.id.Unit_cost1);
+        TextView quantity =(TextView)row.findViewById(R.id.quintity);
+        TextView discount =(TextView)row.findViewById(R.id.discount1);
+        TextView total =(TextView)row.findViewById(R.id.Total1);
         salesOrderDetail=salesOrderDetails.get(position);
         String quantityInt=salesOrderDetail.getQty()+"";
+        itemName.setText(salesOrderDetail.getProducts().getProductName_En());
         quantity.setText(quantityInt);
         String costDouble=salesOrderDetail.getPrice()+"";
         cost.setText(costDouble);

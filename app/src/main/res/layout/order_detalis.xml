@@ -1,155 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+    <TextView
+        android:id="@+id/invoice_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="20dp"
+        android:text="Invoice "
+        android:textSize="25dp" />
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:layout_marginTop="10dp">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:foregroundGravity="center"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/Branch_Code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="HIGH POINT" />
-
-            <TextView
-                android:id="@+id/Branch_Code_tv"
-                android:layout_width="153dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:foregroundGravity="right"
-                android:text="101103" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/Phone_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Phone number" />
-
-            <TextView
-                android:id="@+id/phone_num_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="0112055777" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/invoice_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Invoice Number " />
+                android:text="Invoice Number "
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/invoice_num_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="10300485" />
+                android:layout_marginLeft="20dp"
+                android:text="10300485"
+                android:textSize="20dp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/Phone_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone number"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/phone_num_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="0112055777"
+                android:textSize="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/creation_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Creation Date" />
+                android:text="Creation Date"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/creation_date_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="11/10/2016" />
+                android:layout_marginLeft="20dp"
+                android:text="11/10/2016"
+                android:textSize="20dp" />
+
         </TableRow>
     </TableLayout>
 
-    <TableLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/totalPrice"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
-            <TextView
-                android:id="@+id/Item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="Item "
-                android:textColor="@color/colorPrimaryBlack"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/Unit_cost1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="Unit Cost"
-                android:textColor="@color/colorPrimaryBlack"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/quintity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="Quinitity"
-                android:textColor="@color/colorPrimaryBlack"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/discount1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="Discount"
-                android:textColor="@color/colorPrimaryBlack"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/Total1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="Total"
-                android:textColor="@color/colorPrimaryBlack"
-                android:textSize="20dp" />
-        </TableRow>
-
-
-    </TableLayout>
+        android:text="Total"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent" />
 
     <ListView
-        android:id="@+id/product_list"
+        android:id="@+id/products_listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:foregroundGravity="center" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+       />
+
 
 </LinearLayout>

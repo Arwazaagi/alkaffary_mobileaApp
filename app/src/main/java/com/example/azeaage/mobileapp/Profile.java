@@ -30,6 +30,7 @@ public class Profile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       // onButtonPressed("Wholesale");
         setContentView(R.layout.activity_profile);
         ListView listView = (ListView)findViewById(R.id.orders_list);
         salesOrders=new SalesOrders[5];
@@ -74,7 +75,11 @@ public class Profile extends AppCompatActivity {
             SalesOrdersList.add(salesOrders[1]);
             SalesOrdersList.add(salesOrders[2]);
 
-      listView.setAdapter(new orderList(SalesOrdersList,getApplicationContext()));
+        ArrayList<SalesOrderDetails> salesOrderDetails;
+
+
+
+        listView.setAdapter(new orderList(SalesOrdersList,getApplicationContext()));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -83,8 +88,12 @@ public class Profile extends AppCompatActivity {
                 productIntent.putExtra("salesOrder",position);
                 startActivity(productIntent);
             }
+
+
         });
     }
+
+
 
 
 }

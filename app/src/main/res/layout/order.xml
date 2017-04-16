@@ -5,21 +5,22 @@
     >
 
     <LinearLayout
+        android:id="@id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
-        android:background="@drawable/lable_gry">
+      >
 
         <TextView
             android:id="@+id/orderNumberTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.55"
+            android:paddingLeft="20dp"
             android:text="#300000008 "
-            android:textSize="20dp"
-            android:paddingLeft="20dp"/>
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/order_Status"

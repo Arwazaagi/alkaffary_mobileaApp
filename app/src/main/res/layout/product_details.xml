@@ -1,55 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="top|center">
 
+    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
 
+    >
 
+    <TextView
+        android:id="@+id/Item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Item "
+        android:textColor="@color/colorPrimaryBlack"
+        android:textSize="20dp"
+        android:layout_below="@+id/view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/ItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="name "
+        android:textColor="@color/colorPrimaryBlack"
+        android:textSize="20dp"
+        android:layout_below="@+id/Item"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-            <TextView
-                android:id="@+id/Item_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="Item "
-                android:textColor="@color/colorPrimaryBlack"
-                android:textSize="20dp" />
+    <TextView
+        android:id="@+id/quintity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantity"
+        android:textColor="@color/colorPrimaryBlack"
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/Item"
+        android:layout_alignEnd="@+id/Item" />
 
-            <TextView
-                android:id="@+id/Unit_cost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="Unit Cost"
-                android:textColor="@color/colorPrimaryBlack"
-                android:textSize="20dp" />
+    <TextView
+        android:id="@+id/Unit_cost1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Unit Cost"
+        android:textColor="@color/colorPrimaryBlack"
+        android:textSize="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/Item"
+        android:layout_toRightOf="@+id/ItemName"
+        android:layout_toEndOf="@+id/ItemName"
 
-            <TextView
-                android:id="@+id/quintity_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="Quinitity"
-                android:textColor="@color/colorPrimaryBlack"
-                android:textSize="20dp" />
+        android:gravity="right"/>
 
-            <TextView
-                android:id="@+id/discount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="Discount"
-                android:textColor="@color/colorPrimaryBlack"
-                android:textSize="20dp" />
+    <TextView
+        android:id="@+id/discount1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Discount"
+        android:textColor="@color/colorPrimaryBlack"
+        android:textSize="20dp"
+        android:layout_below="@+id/Unit_cost1"
+        android:layout_alignLeft="@+id/Unit_cost1"
+        android:layout_alignStart="@+id/Unit_cost1"
+        android:gravity="right"/>
 
-            <TextView
-                android:id="@+id/Total"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="Total"
-                android:textColor="@color/colorPrimaryBlack"
-                android:textSize="20dp" />
+    <TextView
+        android:id="@+id/Total1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total"
+        android:textColor="@color/colorPrimaryBlack"
+        android:textSize="20dp"
+        android:layout_below="@+id/discount1"
+        android:layout_alignLeft="@+id/discount1"
+        android:layout_alignStart="@+id/discount1"
+        android:gravity="right"/>
+</RelativeLayout>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:id="@+id/view"
+        />
+
 
 </LinearLayout>

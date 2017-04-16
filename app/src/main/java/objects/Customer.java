@@ -11,46 +11,35 @@ import java.io.Serializable;
  */
 
 public class Customer implements Serializable{
-    private String first_name ;
-    private String last_name ;
+    private String full_name ;
     private String email ;
-    private String phone ;
+    private String firstPhone ;
+    private String secondPhone;
     private String password ;
     private LatLng coordinates;
 
-
-
-    public Customer() {
-        this.first_name = "";
-        this.last_name = "";
-        this.email = "";
-        this.phone = "";
-        this.password = "";
-        this.coordinates = null;
+    public Customer(String full_name, String email, String firstPhone, String secondPhone, String password) {
+        this.full_name = full_name;
+        this.email = email;
+        this.firstPhone = firstPhone;
+        this.secondPhone = secondPhone;
+        this.password = password;
     }
 
-    public Customer(String first_name, String last_name, String email, String phone, String password, LatLng coordinates) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public Customer(String full_name, String email, String firstPhone, String secondPhone, String password, LatLng coordinates) {
+        this.full_name = full_name;
         this.email = email;
-        this.phone = phone;
+        this.firstPhone = firstPhone;
+        this.secondPhone = secondPhone;
         this.password = password;
         this.coordinates = coordinates;
     }
 
-    public Customer(String first_name, String last_name, String email, String phone, String password) {
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.email = email;
-        this.phone = phone;
-        this.password = password;
-    }
-
     protected Customer(Parcel in) {
-        first_name = in.readString();
-        last_name = in.readString();
+        full_name = in.readString();
+
         email = in.readString();
-        phone = in.readString();
+        firstPhone = in.readString();
         password = in.readString();
         coordinates = in.readParcelable(LatLng.class.getClassLoader());
     }
@@ -64,19 +53,47 @@ public class Customer implements Serializable{
         this.coordinates = coordinates;
     }
     public String getFirst_name() {
-        return first_name;
+        return full_name;
     }
 
     public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+        this.full_name = first_name;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getFull_name() {
+        return full_name;
+    }
+
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
+    }
+
+    public String getFirstPhone() {
+        return firstPhone;
+    }
+
+    public void setFirstPhone(String firstPhone) {
+        this.firstPhone = firstPhone;
+    }
+
+    public String getSecondPhone() {
+        return secondPhone;
+    }
+
+    public void setSecondPhone(String secondPhone) {
+        this.secondPhone = secondPhone;
+    }
+
+    public LatLng getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(LatLng coordinates) {
+        this.coordinates = coordinates;
     }
 
     public void setLast_name(String last_name) {
-        this.last_name = last_name;
+        this.full_name = last_name;
     }
 
     public String getEmail() {
@@ -88,11 +105,11 @@ public class Customer implements Serializable{
     }
 
     public String getPhone() {
-        return phone;
+        return firstPhone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone(String firstPhone) {
+        this.firstPhone = firstPhone;
     }
 
     public String getPassword() {
@@ -103,18 +120,16 @@ public class Customer implements Serializable{
         this.password = password;
     }
 
+
     @Override
     public String toString() {
-        return "User{" +
-                "first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
+        return "Customer{" +
+                "full_name='" + full_name + '\'' +
                 ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
+                ", firstPhone='" + firstPhone + '\'' +
+                ", secondPhone='" + secondPhone + '\'' +
                 ", password='" + password + '\'' +
                 ", coordinates=" + coordinates +
                 '}';
     }
-
-
-
 }
