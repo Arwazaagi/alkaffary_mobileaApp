@@ -28,19 +28,21 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <TextView
+                <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="1dp"
-                    android:shadowColor="@color/colorGry"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="2"
-                    android:text="@string/Maintenance_and_instillation"
-                    android:textSize="20dp" />
+                    android:id="@+id/spinner1">
+
+                </Spinner>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinner2">
+
+                </Spinner>
 
                 <LinearLayout
                     android:layout_width="match_parent"
