@@ -17,7 +17,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +34,8 @@ public class MainActivity extends AppCompatActivity
         Stores_Fragmant.OnFragmentInteractionListener,
         Contact_Fragment.OnFragmentInteractionListener,
         About_Fragment.OnFragmentInteractionListener{
+
+
 
     @Override
     public void onFragmentInteraction(String data) {
@@ -65,7 +71,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

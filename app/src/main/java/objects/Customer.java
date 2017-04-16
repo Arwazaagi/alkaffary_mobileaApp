@@ -18,8 +18,6 @@ public class Customer implements Serializable{
     private String password ;
     private LatLng coordinates;
 
-
-
     public Customer() {
         this.first_name = "";
         this.last_name = "";

@@ -50,5 +50,20 @@
     <string name="title_edit_profile">Edit Profile</string>
     <string name="title_orders">Orders</string>
     <string name="Maintenance_and_instillation">Maintenance and instillation</string>
+    <string name="Order_Number">Order Number:</string>
+    <string name="Description">Description</string>
+    <string name="Type_on_Maintenance">Type on Maintenance:</string>
+    <string-array name="Type_on_Maintenance">
 
+        <item>hello</item>
+        <item>Other</item>
+
+    </string-array>
+    <string name="Date_Of_Maintenance">Date Of Maintenance</string>
+    <string-array name="Date_Of_Maintenance">
+        <item>one week</item>
+        <item>two week</item>
+        <item>tree week</item>
+        <item>four week</item>
+    </string-array>
 </resources>
