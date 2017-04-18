@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 /**
  * Created by AZeaage on 4/5/2017.
@@ -27,14 +26,24 @@ public class background extends AsyncTask <String ,Void ,String> {
         String method = voids[0];
         String result="";
         CallSoap callSoap =new CallSoap();
-        if(method.equals("register")){
-            String registerInfo[]=new String[8];
-            for(int i=0;i<registerInfo.length;i++)
-            registerInfo[i]=voids[i+1];
-            result=callSoap.RegisterUser(tokenKey ,registerInfo[0],registerInfo[1],registerInfo[2],registerInfo[3],
-                    registerInfo[4],registerInfo[5],registerInfo[6],registerInfo[7]);
+        System.out.println("chenk the method value :: "+method);
+        switch (method) {
+            case "register":
+                String registerInfo[] = new String[8];
+                System.arraycopy(voids, 1, registerInfo, 0, registerInfo.length);
+                result = callSoap.RegisterUser(tokenKey, registerInfo[0], registerInfo[1], registerInfo[2], registerInfo[3],
+                        registerInfo[4], registerInfo[5], registerInfo[6], registerInfo[7]);
+                break;
+            case "login":
+                String email = voids[1];
+                String password = voids[2];
+                result = callSoap.AuthenticateCustomer(tokenKey, email, password);
+
+                break;
+            case "companyInfo":
+                callSoap.GetCompanyInfo(tokenKey);
+                break;
         }
-        //callSoap.GetCompanyInfo("0DE4EA23-6420-43C2-B853-18E8D6B32837");
         return result;
     }
 
@@ -42,7 +51,7 @@ public class background extends AsyncTask <String ,Void ,String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         dialog.dismiss();
-        Toast.makeText(context,s,Toast.LENGTH_LONG).show();
+        //Toast.makeText(context,s,Toast.LENGTH_LONG).show();
         System.out.println("Out put **********"+s);
 
     }

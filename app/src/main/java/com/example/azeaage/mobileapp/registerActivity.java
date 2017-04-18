@@ -412,17 +412,22 @@ public class registerActivity extends AppCompatActivity implements LoaderCallbac
                 background b= new background(getBaseContext());
                 String result= null;
                 try {
-                    result = b.execute("register",new_Customer.getFull_name(),new_Customer.getEmail(),new_Customer.getFirstPhone(),new_Customer.getSecondPhone(),new_Customer.getPassword(),"Riyadh","Riyadh","24.703002, 46.723201").get();
-                    Toast.makeText(getApplication(),result,Toast.LENGTH_LONG).show();
-                    System.out.println("userRegister &&&&&&&&&&&&%%%%%% "+result);
+                    result = b.execute("register",new_Customer.getFull_name(),new_Customer.getEmail(),new_Customer.getPassword(),new_Customer.getFirstPhone(),new_Customer.getSecondPhone(),"Riyadh","Riyadh","24.703002, 46.723201").get();
+
+                    if(result.contains("Error")) {
+                        Toast.makeText(getApplication(), "حدث خطأ اثناء التسجيل ارجو التسجيل مره اخرى", Toast.LENGTH_LONG).show();
+                    }else {
+
+                        // set Fragmentclass Arguments
+                        Intent main_intent = new Intent(getApplication(),MainActivity.class);
+                        startActivity(main_intent);
+                        finish();
+                    }
                 } catch (InterruptedException | ExecutionException e) {
                     e.printStackTrace();
                 }
 
-                // set Fragmentclass Arguments
-                Intent main_intent = new Intent(getApplication(),MainActivity.class);
-                startActivity(main_intent);
-                finish();
+
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();

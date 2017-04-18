@@ -19,7 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -43,17 +42,20 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            FragmentManager manager=getSupportFragmentManager();
             switch (item.getItemId()) {
                 case R.id.navigation_search:
                   //  mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_dashboard:
-                    Intent shopping_intent =new Intent(getApplication(), shopping_cart.class);
-                    startActivity(shopping_intent);
+                    shoppingCart shoppingCart= new shoppingCart();
+
+                    manager.beginTransaction().replace(R.id.RelativeLayout_for_Fragment,shoppingCart,shoppingCart.getTag()).commit();
                     return true;
                 case R.id.navigation_notifications:
-                    Intent notification_intent =new Intent(getApplication(), notification.class);
-                    startActivity(notification_intent);
+                    notification_fragment notification= new notification_fragment();
+
+                    manager.beginTransaction().replace(R.id.RelativeLayout_for_Fragment,notification,notification.getTag()).commit();
                     return true;
             }
             return false;
@@ -156,7 +158,6 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_products) {
             ExpandableLVFragment ELVF= new ExpandableLVFragment();
-            Toast.makeText(this,"ExpandableLVFragment",Toast.LENGTH_SHORT).show();
             FragmentManager manager=getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.RelativeLayout_for_Fragment,ELVF,ELVF.getTag()).commit();
 
