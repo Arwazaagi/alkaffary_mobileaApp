@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="20dp"
     android:layout_marginTop="50dp"
-    tools:context="com.example.azeaage.mobileapp.About_Fragment">
+    tools:context="com.example.azeaage.mobileapp.fragments.About_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
 

@@ -1,4 +1,4 @@
-package com.example.azeaage.mobileapp;
+package com.example.azeaage.mobileapp.fragments;
 
 
 import android.Manifest;
@@ -23,6 +23,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.azeaage.mobileapp.MainActivity;
+import com.example.azeaage.mobileapp.R;
+import com.example.azeaage.mobileapp.Services.GPS_Service;
+import com.example.azeaage.mobileapp.UserLocation;
+import com.example.azeaage.mobileapp.background;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -50,6 +55,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     EditText location_et;
     Button continuous_button,search_b;
     private LatLng latLng;
+    String DocNum;
+    char callActivity;
+    GPS_Service gps;
     String url="http://hr.alkaffary.com:664/AlKaffaryMobileService.svc?wsdl";
 
     public Customer getCustomer() {
@@ -93,6 +101,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
         Intent intent =getIntent();
         customer=(Customer) intent.getSerializableExtra("customer");
+        DocNum=(String) getIntent().getSerializableExtra("docNum");
+        System.out.println(DocNum+" doc num");
+        callActivity=(char)getIntent().getSerializableExtra("setInvoiceLocation");
+
+        System.out.println(callActivity+" callActivity");
         // Assume thisActivity is the current activity
         int permissionCheck = ContextCompat.checkSelfPermission(MapsActivity.this,
                 Manifest.permission.WRITE_CALENDAR);
@@ -131,7 +144,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 // Launch the new activity and add the additional flags to the intent
 
-     getApplication().startActivity(i);
+    // getApplication().startActivity(i);
 
 
     }
@@ -172,12 +185,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.clear();
             }
             else{
-            marker=new MarkerOptions().position(latLng).title("Marker");
-            mMap.addMarker(marker);
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            setLocation(latLng);
             }
         }
 
+    }
+
+    private void setLocation(LatLng point) {
+        mMap.clear();
+        marker=new MarkerOptions().position(point).title("Marker");
+        mMap.addMarker(marker);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point,18));
     }
 
     /**
@@ -195,7 +213,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // initially the focus will be on Riyadh city.
         LatLng riyadh = new LatLng(24.6796205, 46.6981272);
        // mMap.addMarker(new MarkerOptions().position(riyadh).title("Marker in Riyadh"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(riyadh));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(riyadh,10));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -220,7 +238,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 //center = new LatLng(lat,lng);// PARAMETER point;
                 center = point;
-                System.out.println("locationnnnn of click &&&&&&&&&&&"+customer);
+
+                latLng=center;
                 if(marker!=null){
                     mMap.clear();
                 }
@@ -231,30 +250,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+      //  setCurrentLocation() ;
 
-
-        Criteria criteria = new Criteria();
+      /*  Criteria criteria = new Criteria();
         // get last known location
         Location location =   locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
 
         // create variable to store the user's location
         UserLocation currentLocation = new UserLocation();
-
+      //  System.out.println(location.getLatitude()+","+location.getLongitude()+"    current location ");
         // set values of our location variable
         currentLocation.setLatitude(location.getLatitude());
         currentLocation.setLongitude(location.getLongitude());
         //set the location for the user
         latLng = new LatLng(location.getLatitude(),location.getLongitude());
-
-        if(marker!=null){
-            mMap.clear();
-        }
-
-            marker = new MarkerOptions().position(latLng).title("your location ");
-            mMap.addMarker(marker);
+        setLocation(latLng);*/
 
     }
+    private void setCurrentLocation() {
+        gps = new GPS_Service(MapsActivity.this);
 
+        if(gps.canGetLocation()) {
+            double latitude = gps.getLatitude();
+            double longitude = gps.getLongitude();
+
+            Toast.makeText(
+                    getApplicationContext(),
+                    "Your Location is -\nLat: " + latitude + "\nLong: "
+                            + longitude, Toast.LENGTH_LONG).show();
+            System.out.println("My location"+gps.getLatitude());
+          LatLng latLng=new LatLng(latitude,longitude);
+            setLocation(latLng);
+
+        } else {
+            gps.showSettingsAlert();
+        }
+    }
     @Override
     public void onClick(View v) {
 
@@ -262,18 +293,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         onSearch(v);
         else if(v.getId()==R.id.continuous_button)
         {
+            if(callActivity=='I'){
+                background b=new background(this);
+
+                    ///pass the location of the customer
+                    if(latLng!=null){
+                        String result= null;
+                        try {
+                            result = b.execute("SaveGPSLocation",DocNum, latLng.latitude+"",latLng.longitude+"").get();
+                        } catch (InterruptedException | ExecutionException e) {
+                            e.printStackTrace();
+                        }
+                        Toast.makeText(this,result,Toast.LENGTH_LONG).show();
+
+            }
+            else {
+                        Toast.makeText(this,"يجب عليك تحديد موقع لتوصيل الطلب ",Toast.LENGTH_LONG).show();
+
+                    }}
+            else {
             customer.setLatLng(latLng);
-            background b=new background(this);
+            System.out.println(customer+"   new customer ");
+            background b1=new background(this);
             try {
-                String result= b.execute("register",customer.getFull_name(),customer.getEmail(),customer.getFirstPhone(),customer.getSecondPhone(),customer.getPassword(),"Riyadh","Riyadh",customer.getCoordinates().toString()).get();
-                Toast.makeText(this,result,Toast.LENGTH_LONG).show();
+               String result= b1.execute("register",customer.getFull_name(),customer.getEmail(),customer.getFirstPhone(),customer.getSecondPhone(),customer.getPassword(),"Riyadh","Riyadh",customer.getCoordinates().toString()).get();
+               Toast.makeText(this,result,Toast.LENGTH_LONG).show();
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
             //insert the customer to database
             Intent main_intent = new Intent(this,MainActivity.class);
             startActivity(main_intent);
-            finish();
+            finish();}
         }
     }
 }

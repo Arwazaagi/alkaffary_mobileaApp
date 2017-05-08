@@ -20,6 +20,18 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.azeaage.mobileapp.fragments.About_Fragment;
+import com.example.azeaage.mobileapp.fragments.Contact_Fragment;
+import com.example.azeaage.mobileapp.fragments.Maintenance_Fragment;
+import com.example.azeaage.mobileapp.fragments.Offers_Fragment;
+import com.example.azeaage.mobileapp.fragments.Products_Fragment;
+import com.example.azeaage.mobileapp.fragments.Stores_Fragmant;
+import com.example.azeaage.mobileapp.fragments.Wholesale_Fragment;
+import com.example.azeaage.mobileapp.fragments.notification_fragment;
+import com.example.azeaage.mobileapp.fragments.shoppingCart;
+
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         Offers_Fragment.OnFragmentInteractionListener,
@@ -29,7 +41,9 @@ public class MainActivity extends AppCompatActivity
         Stores_Fragmant.OnFragmentInteractionListener,
         Contact_Fragment.OnFragmentInteractionListener,
         About_Fragment.OnFragmentInteractionListener{
-
+        userSessionManeger session;
+    String name;
+    String email;
     @Override
     public void onFragmentInteraction(String data) {
         this.getSupportActionBar().setTitle(data);
@@ -67,7 +81,13 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        session =new userSessionManeger(getBaseContext());
+        if(session.checkLogin())
+            finish();
+        //get user data from session
+        HashMap<String,String> user = session.getUserDetails();
+        name =user.get(userSessionManeger.KEY_NAME);
+        email = user.get(userSessionManeger.KEY_EMAIL);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -94,7 +114,7 @@ public class MainActivity extends AppCompatActivity
 
         View headerView = getLayoutInflater().inflate(R.layout.nav_header_main, navigationView);
         TextView nameTV= (TextView)headerView.findViewById(R.id.name);
-        nameTV.setText("Arwa alzeaagi");
+        nameTV.setText(name);
         LinearLayout linearLayout =(LinearLayout) headerView.findViewById(R.id.profile_nav);
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,9 +177,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_products) {
-            ExpandableLVFragment ELVF= new ExpandableLVFragment();
+          Products_Fragment products_fragment= new Products_Fragment();
             FragmentManager manager=getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.RelativeLayout_for_Fragment,ELVF,ELVF.getTag()).commit();
+            manager.beginTransaction().replace(R.id.RelativeLayout_for_Fragment,products_fragment,products_fragment.getTag()).commit();
 
         } else if (id == R.id.nav_offers) {
             Offers_Fragment offers_fragment= new Offers_Fragment();

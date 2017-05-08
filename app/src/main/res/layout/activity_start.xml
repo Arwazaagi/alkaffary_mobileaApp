@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#712623"
+    android:background="@drawable/b6"
 
     android:weightSum="1"
 
@@ -50,14 +50,15 @@
         android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="188dp"
-        android:background="@drawable/logo_black"
+        android:background="@drawable/log_black"
         android:scaleType="center"
         android:layout_weight="0.15"
         android:foregroundGravity="center"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="131dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="41dp"
+        android:layout_marginEnd="41dp" />
 
 
 </RelativeLayout>

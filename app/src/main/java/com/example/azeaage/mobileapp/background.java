@@ -29,10 +29,9 @@ public class background extends AsyncTask <String ,Void ,String> {
         System.out.println("chenk the method value :: "+method);
         switch (method) {
             case "register":
-                String registerInfo[] = new String[8];
-                System.arraycopy(voids, 1, registerInfo, 0, registerInfo.length);
-                result = callSoap.RegisterUser(tokenKey, registerInfo[0], registerInfo[1], registerInfo[2], registerInfo[3],
-                        registerInfo[4], registerInfo[5], registerInfo[6], registerInfo[7]);
+
+                result = callSoap.RegisterUser(tokenKey, voids[1], voids[2], voids[3], voids[4],
+                        voids[5], voids[6], voids[7], voids[8]);
                 break;
             case "login":
                 String email = voids[1];
@@ -41,7 +40,22 @@ public class background extends AsyncTask <String ,Void ,String> {
 
                 break;
             case "companyInfo":
-                callSoap.GetCompanyInfo(tokenKey);
+                result=callSoap.GetCompanyInfo(tokenKey);
+                break;
+            case "GetProductsList":
+                result= callSoap.GetProductsList(tokenKey,voids[1], voids[2], voids[3], voids[4]);
+                break;
+            case "GetBranchesList":
+                result= callSoap.GetBranchesList(tokenKey);
+                break;
+            case "GetInvoicesByPhone":
+                result= callSoap.GetInvoicesByPhone(tokenKey,voids[1]);
+                break;
+            case "GetInvoiceByDocNum":
+                result= callSoap.GetInvoiceByDocNum(tokenKey,voids[1]);
+                break;
+            case "SaveGPSLocation":
+                result=callSoap.SaveGPSLocation(voids[1],voids[2],voids[3]);
                 break;
         }
         return result;

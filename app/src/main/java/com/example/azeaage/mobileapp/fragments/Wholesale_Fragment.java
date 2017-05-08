@@ -1,26 +1,26 @@
-package com.example.azeaage.mobileapp;
+package com.example.azeaage.mobileapp.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.example.azeaage.mobileapp.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link About_Fragment.OnFragmentInteractionListener} interface
+ * {@link Wholesale_Fragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class About_Fragment extends Fragment {
+public class Wholesale_Fragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public About_Fragment() {
+    public Wholesale_Fragment() {
         // Required empty public constructor
     }
 
@@ -29,11 +29,8 @@ public class About_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        onButtonPressed("About us");
-        View view= inflater.inflate(R.layout.fragment_about_, container, false);
-
-
-        return view;
+        onButtonPressed("Wholesale");
+        return inflater.inflate(R.layout.fragment_wholesale_, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -74,4 +71,6 @@ public class About_Fragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(String data);
     }
+
+
 }

@@ -7,12 +7,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.azeaage.mobileapp.adapters.orderList;
 import com.google.android.gms.maps.model.LatLng;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
 
 import objects.Products;
 import objects.SalesOrderDetails;
@@ -20,12 +27,14 @@ import objects.SalesOrders;
 
 public class Profile extends AppCompatActivity {
     private ArrayList<SalesOrders> SalesOrdersList;
-    public static SalesOrders salesOrders[];
+    public static SalesOrders salesOrders;
     ArrayList<SalesOrderDetails>salesOrderDetails;
     SalesOrderDetails salesOrderDetail[];
     java.sql.Date sql;
     LatLng latLng=null;
     Products products[];
+    userSessionManeger session;
+    String customerPhone,DocNum,Latitude,Longitude,address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,59 +42,60 @@ public class Profile extends AppCompatActivity {
        // onButtonPressed("Wholesale");
         setContentView(R.layout.activity_profile);
         ListView listView = (ListView)findViewById(R.id.orders_list);
-        salesOrders=new SalesOrders[5];
 
         String string = "January 2, 2010";
         Date date = null;
-        //int orderId, Date orderDate, String shippingAddress, System shippingCity, LatLng locationCoordinate,
-       // double orderTotal, int SAPInvoiceNo, String completionCode, boolean isCancelled, String createdBy
+        session =new userSessionManeger(getBaseContext());
+        SalesOrdersList=new ArrayList<SalesOrders>();
+        if(session.checkLogin())
+            finish();
+         background b= new background(getBaseContext());
         try {
-            SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-            Date parsed =  format.parse("20110210");
-           sql = new java.sql.Date(parsed.getTime());//2011-02-10 out put
+            HashMap<String, String> user = session.getUserDetails();
+            customerPhone = user.get(userSessionManeger.KEY_PHONE);
+
+                System.out.println(customerPhone + " customer fon");
+                String result = b.execute("GetInvoicesByPhone", "0552959085").get();
+                result = result.substring(result.indexOf('=') + 1, result.indexOf(';'));
 
 
-            latLng = new LatLng(24.766950, 46.775897);
+                JSONArray jsonarray = new JSONArray(result);
+                for (int i = 0; i < jsonarray.length(); i++) {
+                    JSONObject jsonobject = jsonarray.getJSONObject(i);
+                    DocNum = jsonobject.getString("DocNum");
+                    Latitude = jsonobject.getString("Latitude");
+                    Longitude = jsonobject.getString("Longitude");
+                    background b1 = new background(getBaseContext());
+                    String res = null;
 
-            salesOrders[1] = new SalesOrders(1, sql, "Riydh King abdullah","riyadh" ,latLng , 1000.0,30999008, "", false, "customer");
-            salesOrders[2] = new SalesOrders(1, sql, "Riydh King abdullah","riyadh" ,latLng , 1000.0,300567567, "", false, "customer");
-            products =new Products[6];
-            products[1]=new Products(112,"غرفة نوم", "BedRoom","furniture","furniture",10000,true);
-            products[2]=new Products(132,"غرفة طعام", "Dining Room","furniture","furniture",20000,true);
-            products[3]=new Products(142,"غرفة جلوس", "living room","furniture","furniture",22000,true);
-            products[4]=new Products(152,"غرفة نوم", "BedRoom","furniture","furniture",10000,true);
-            salesOrderDetail=new SalesOrderDetails[5];
-            salesOrderDetail[1]=new SalesOrderDetails(1,"m",2,10000.0,2*10000,sql,products[1]);
-            salesOrderDetail[2]=new SalesOrderDetails(2,"m",5,10000.0,5*10000,sql,products[2]);
-            salesOrderDetail[3]=new SalesOrderDetails(3,"m",3,10000.0,3*10000,sql,products[3]);
-            salesOrderDetail[4]=new SalesOrderDetails(4,"m",1,10000.0,1*10000,sql,products[4]);
-            salesOrderDetails=new ArrayList<SalesOrderDetails>();
-            for(int i=1;i<=4;i++)
-            salesOrderDetails.add(salesOrderDetail[i]);
-            salesOrders[1].setSalesOrderDetails(salesOrderDetails);
-            salesOrders[2].setSalesOrderDetails(salesOrderDetails);
+                    res = b1.execute("GetInvoiceByDocNum", DocNum).get();
+
+                    if (!res.contains("Error")) {
+                        res = res.substring(res.indexOf('=') + 1, res.indexOf(';'));
 
 
-        }catch (ParseException e) {
-            e.printStackTrace();
+                        JSONObject jsonobject1 = new JSONObject(res);
+                        DocNum = jsonobject1.getString("DocNum");
+                        Latitude = jsonobject1.getString("Latitude");
+                        Longitude = jsonobject1.getString("Longitude");
+                        address = jsonobject1.getString("U_Address");
+                        salesOrders = new SalesOrders(DocNum, Latitude, Longitude, address);
+                        SalesOrdersList.add(salesOrders);
+                    }
+                }
+            } catch (JSONException | InterruptedException | ExecutionException e1) {
+            e1.printStackTrace();
         }
 
 
-            SalesOrdersList=new ArrayList<SalesOrders>();
-            SalesOrdersList.add(salesOrders[1]);
-            SalesOrdersList.add(salesOrders[2]);
-
-        ArrayList<SalesOrderDetails> salesOrderDetails;
-
-
-
+        //ArrayList<SalesOrderDetails> salesOrderDetails;
         listView.setAdapter(new orderList(SalesOrdersList,getApplicationContext()));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent productIntent = new Intent(getApplication().getApplicationContext(),Order_Details_Activity.class);
                 //To pass:
-                productIntent.putExtra("salesOrder",position);
+                productIntent.putExtra("salesOrder",SalesOrdersList.get(position));
                 startActivity(productIntent);
             }
 

@@ -1,4 +1,4 @@
-package com.example.azeaage.mobileapp;
+package com.example.azeaage.mobileapp.fragments;
 
 
 import android.os.Bundle;
@@ -8,6 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
+
+import com.example.azeaage.mobileapp.BrandInfo;
+import com.example.azeaage.mobileapp.adapters.DataAdapter;
+import com.example.azeaage.mobileapp.ListInfo;
+import com.example.azeaage.mobileapp.R;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

@@ -1,4 +1,4 @@
-package com.example.azeaage.mobileapp;
+package com.example.azeaage.mobileapp.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,14 +6,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TableLayout;
-import android.widget.TableRow;
+import android.widget.ListView;
+
+import com.example.azeaage.mobileapp.R;
+import com.example.azeaage.mobileapp.adapters.salesProductsAdapter;
+import com.example.azeaage.mobileapp.background;
+
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+
+import objects.Products;
 
 
 public class Products_Fragment extends Fragment {
 
     private Products_Fragment.OnFragmentInteractionListener mListener;
+    private ListView salesProductListView;
+    ArrayList<Products> productsArrayList;
+    String response;
 
     public Products_Fragment() {
         // Required empty public constructor
@@ -34,35 +44,24 @@ public class Products_Fragment extends Fragment {
         // Inflate the layout for this fragment
         onButtonPressed("Products");
         View view= inflater.inflate(R.layout.fragment_products_, container, false);
-        TableLayout tableLayout = (TableLayout) view.findViewById(R.id.product_table);
-        for (int i = 0; i < 10; i++)
-        {
-            TableRow tableRow = new TableRow(getActivity());
-            Button button = new Button(getActivity());
-            button.setText("1");
-            tableRow.addView(button);
+        salesProductListView= (ListView) view.findViewById(R.id.salesProductsListView);
+        productsArrayList=new ArrayList<>();
 
-            button = new Button(getActivity());
-            button.setText("2");
-            tableRow.addView(button);
+        productsArrayList.add(new Products(112,"غرفة نوم", "BedRoom","furniture","furniture",10000,true));
+        productsArrayList.add(new Products(132,"غرفة طعام", "Dining Room","furniture","furniture",20000,true));
 
-            View row = inflater.inflate(R.layout.product_to_sale, container,false);
-          //  button.setText("3");
-            tableRow.addView(row);
-          /*  View row = inflater.inflate(R.layout.product_to_sale, container,false);
-            View row1 = inflater.inflate(R.layout.product_to_sale, container,false);
-            View row2 = inflater.inflate(R.layout.product_to_sale, container,false);
+        salesProductListView.setAdapter(new salesProductsAdapter(productsArrayList,getContext()));
 
-            tableRow.addView(row);
-
-
-            tableRow.addView(row1);
-
-
-            tableRow.addView(row2);
-*/
-            tableLayout.addView(tableRow);
+        background b=new background(getContext());
+        try {
+             response =b.execute("GetProductsList","1","01","100.0","10000.0").get();
+            System.out.println("Products array json"+response);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
         }
+
 
         return view;
     }

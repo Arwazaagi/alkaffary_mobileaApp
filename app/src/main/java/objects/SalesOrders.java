@@ -17,7 +17,7 @@ public class SalesOrders implements Serializable{
     private String ShippingCity;
     private LatLng locationCoordinate;
     private double OrderTotal;
-    private int SAPInvoiceNo;
+    private String SAPInvoiceNo;
     private String CompletionCode;
     private boolean isCancelled;
     private Date CancellationDate;
@@ -28,11 +28,20 @@ public class SalesOrders implements Serializable{
     private ArrayList<SalesOrderDetails> salesOrderDetails;
     private SalesOrderStatusTra salesOrderStatusTra;
     private int mData;
+    String lat;
+    String lon;
+
 
     public ArrayList<SalesOrderDetails> getSalesOrderDetails() {
         return salesOrderDetails;
     }
 
+    public SalesOrders(String  SAPInvoiceNo,String lat,String lon , String shippingAddress){
+        this.SAPInvoiceNo=SAPInvoiceNo;
+        this.lat=lat;
+        this.lon=lon;
+        this.ShippingAddress=shippingAddress;
+    }
     public void setSalesOrderDetails(ArrayList<SalesOrderDetails> salesOrderDetails) {
         this.salesOrderDetails = salesOrderDetails;
     }
@@ -46,7 +55,7 @@ public class SalesOrders implements Serializable{
     }
 
     public SalesOrders(int orderId, Date orderDate, String shippingAddress, String shippingCity, LatLng locationCoordinate,
-                       double orderTotal, int SAPInvoiceNo, String completionCode, boolean isCancelled, String createdBy
+                       double orderTotal, String SAPInvoiceNo, String completionCode, boolean isCancelled, String createdBy
                        ) {
         OrderId = orderId;
         OrderDate = orderDate;
@@ -60,6 +69,21 @@ public class SalesOrders implements Serializable{
         CreatedBy = createdBy;
 
     }
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLon() {
+        return lon;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
+    }
 
     public Customer getCustomer() {
         return customer;
@@ -69,11 +93,11 @@ public class SalesOrders implements Serializable{
         this.customer = customer;
     }
 
-    public int getSAPInvoiceNo() {
+    public String getSAPInvoiceNo() {
         return SAPInvoiceNo;
     }
 
-    public void setSAPInvoiceNo(int SAPInvoiceNo) {
+    public void setSAPInvoiceNo(String SAPInvoiceNo) {
         this.SAPInvoiceNo = SAPInvoiceNo;
     }
 

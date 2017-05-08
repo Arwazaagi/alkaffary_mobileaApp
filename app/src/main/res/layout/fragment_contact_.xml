@@ -7,7 +7,7 @@
     android:layout_marginTop="90dp"
     android:orientation="vertical"
     android:weightSum="2"
-    tools:context="com.example.azeaage.mobileapp.Contact_Fragment">
+    tools:context="com.example.azeaage.mobileapp.fragments.Contact_Fragment">
 
     <TextView
         android:id="@+id/Call_Link"

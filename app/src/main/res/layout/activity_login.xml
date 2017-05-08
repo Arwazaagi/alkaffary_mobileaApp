@@ -78,6 +78,27 @@
                 android:textStyle="bold"
                 android:textSize="20dp"/>
 
+            <TextView
+                android:id="@+id/forgetPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="استرجاع كلمة المرور"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/new_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:gravity="center"
+                android:text="انشاء حساب جديد"
+                android:textSize="20dp" />
+
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

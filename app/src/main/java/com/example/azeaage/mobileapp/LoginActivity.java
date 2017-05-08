@@ -29,7 +29,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -49,11 +48,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
     private static final String JSON_ARRAY ="AuthenticateCustomerResponse";// the string must be the same as the name of the json object in the php file
-    private static final String CustomerID = "CustomerID";// the string must be the same as the key name in the php file
-    private static final String CustomerName= "CustomerName";// the string must be the same as the key name in the php file
+   //set the key of the values in json object
+    private static final String CustomerID = "CustomerID";
+    private static final String CustomerName= "CustomerName";
+    private static final String Phone1 = "Phone1";
+    private static final String Email= "email";
     String sJson;
-    private int TRACK = 0;
-    private JSONArray users = null;
+    userSessionManeger session;
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -77,6 +78,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        session=new userSessionManeger(getBaseContext());
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -105,6 +107,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        font f=new font();
+        f.ChangeFontToBold(mEmailSignInButton,getBaseContext());
+        f.ChangeFontToBold(mPasswordView,getBaseContext());
     }
 
     private void populateAutoComplete() {
@@ -221,32 +226,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-                }
-            });
+        mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+        mLoginFormView.animate().setDuration(shortAnimTime).alpha(
+                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+            }
+        });
 
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
+        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+        mProgressView.animate().setDuration(shortAnimTime).alpha(
+                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            }
+        });
     }
 
     @Override
@@ -359,15 +357,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
               if(result.equals("AuthenticateCustomerResponse{AuthenticateCustomerResult=anyType{}; }")||result.contains("Error")){
                     Toast.makeText(getApplication(), "حدث خطأ اثناء تسجيل الدخول الرجاء التأكد من بياناتك ", Toast.LENGTH_LONG).show();
                 }else {
+                  sJson=result.substring(result.indexOf('=')+1,result.indexOf(';'));
+                  setData();
                     // set Fragmentclass Arguments
                     Intent main_intent = new Intent(getApplication(),MainActivity.class);
+                    main_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    main_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(main_intent);
                     finish();
                 }
-                sJson=result;
-               // extractJSON();
-               // showData();
-
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
@@ -383,45 +381,28 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     //extract the jason object
-    private void extractJSON(){
-        try {
-            JSONObject jsonObject = new JSONObject(sJson);
-            users = jsonObject.getJSONArray(JSON_ARRAY);
-            if(users.length()!=0)
-                showData();
-            else
-            {
-                Toast.makeText(this, "لا يوجد جداول مسجلة  ", Toast.LENGTH_SHORT).show();
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
 
     //show the one row from database
-    private void showData(){
+    private void setData(){
         try {
 
-          //  JSONObject jsonObject ;
-            String response="{\"AuthenticateCustomerResult\":{\"CustomerID\":5,\"CustomerName\":\"norah abdulaziz\",\"CustomerAddress\":\"Riyadh\",\"CustomerCity\":\"Riyadh\",\"Latitude\":null,\"Longitude\":null,\"GPSURL\":\"24.703002, 46.723201\",\"Phone1\":\"0505050500\",\"Phone2\":\"0556693340\",\"Email\":\"norah@gmail.com\",\"LoginPassword\":\"123456\",\"isActive\":false,\"CreatedBy\":\"0DE4EA23-6420-43C2-B853-18E8D6B32837\",\"CreationDate\":\"\\/Date(1492415542107)\\/\",\"LastModifiedBy\":null,\"LastModificationDate\":null,\"Carts\":[],\"SalesOrders\":[],\"EntityState\":2,\"EntityKey\":{\"EntitySetName\":\"Customers\",\"EntityContainerName\":\"KMobileEntities\",\"EntityKeyValues\":[{\"Key\":\"CustomerID\",\"Value\":5}],\"IsTemporary\":false}} }";
-            JSONObject jsonObject = new JSONObject(response);
-//            users = jsonObject.getJSONArray("AuthenticateCustomerResult");
-            JSONObject js=users.getJSONObject(0);
-            //jsonObject=new JSONObject(response);
-          /*  String fullName = jsonObject.getString(FName)+" "+jsonObject.getString(LName);*/
-            //String id[] = new String[users.length()];
-            String ID, fullName;
+           JSONObject jsonObject =new JSONObject(sJson);
+            String ID, fullName , email,phone1 ;
             int i_bookedSeat, i_monthPrice, i_dayPrice;
            /* for (int i = 0; i < users.length(); i++) {  //to go over all the
                 jsonObject = users.getJSONObject(TRACK);*/
                 /*
                 * take the json object as string
                 * */
+            fullName=jsonObject.optString(CustomerName);
+            ID=jsonObject.optString(CustomerID);
+            phone1=jsonObject.optString(Phone1);
+          //  email=jsonObject.optString(Email);
 
-                ID = js.optString(CustomerID);
-                fullName = js.optString(CustomerID);
+               // ID = js.optString(CustomerID);
+               // fullName = js.optString(CustomerID);
                 System.out.print("Customer name :"+ fullName+"  ID: "+ID);
-
+            session.createUserLoginSession(fullName," ",ID,phone1);
                // Customer customer = new Customer(i_ID, S_time, S_startDate, S_endDate, i_bookedSeat, i_monthPrice, i_dayPrice);
                 //scheduleArrayList.add(s);//add the object to array list
              //   TRACK++;

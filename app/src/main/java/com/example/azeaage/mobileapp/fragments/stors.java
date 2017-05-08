@@ -1,8 +1,9 @@
-package com.example.azeaage.mobileapp;
+package com.example.azeaage.mobileapp.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+import com.example.azeaage.mobileapp.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

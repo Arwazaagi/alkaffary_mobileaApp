@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.azeaage.mobileapp.Stores_Fragmant">
+    tools:context="com.example.azeaage.mobileapp.fragments.Stores_Fragmant">
 
     <!-- TODO: Update blank fragment layout -->
 

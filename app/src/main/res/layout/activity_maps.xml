@@ -30,7 +30,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="397dp"
-        tools:context="com.example.azeaage.mobileapp.MapsActivity"
+        tools:context="com.example.azeaage.mobileapp.fragments.MapsActivity"
         android:layout_weight="1" />
 
     <Button

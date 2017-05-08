@@ -1,39 +1,50 @@
-package com.example.azeaage.mobileapp;
+package com.example.azeaage.mobileapp.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.azeaage.mobileapp.R;
+import com.example.azeaage.mobileapp.background;
+
+import java.util.concurrent.ExecutionException;
 
 
-public class Offers_Fragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link About_Fragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ */
+public class About_Fragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Offers_Fragment() {
+    public About_Fragment() {
         // Required empty public constructor
     }
 
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        onButtonPressed("offers");
-        return inflater.inflate(R.layout.fragment_offers_, container, false);
+        onButtonPressed("About us");
+        View view= inflater.inflate(R.layout.fragment_about_, container, false);
+        background background=new background(getContext());
+        try {
+            String res=background.execute("companyInfo").get();
+            System.out.println(res+" company Info");
+            String json=res.substring(res.indexOf('=')+1,res.indexOf(';'));
+            System.out.println(json+" company Info");
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -25,8 +25,7 @@ public class product_activity extends AppCompatActivity implements HorizontalNum
 //      HorizontalNumberPickerListener horizontalNumberPickerListener1=(HorizontalNumberPickerListener) findViewById(R.id.horizontal_number_picker1);
        // System.out.print(horizontalNumberPickerListener1.toString()+"777777777777777");
 
-
-               name_ar=(TextView)findViewById(R.id.product_name_ar);
+        name_ar=(TextView)findViewById(R.id.product_name_ar);
         name_en=(TextView)findViewById(R.id.product_name_en);
         color=(TextView)findViewById(R.id.product_color);
         size=(TextView)findViewById(R.id.product_size);

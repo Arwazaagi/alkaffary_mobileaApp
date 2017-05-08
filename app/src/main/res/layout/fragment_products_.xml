@@ -2,13 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.azeaage.mobileapp.Products_Fragment">
+    tools:context="com.example.azeaage.mobileapp.fragments.Products_Fragment">
 
 
-    <TableLayout
-        android:id="@+id/product_table"
+    <ListView
+        android:id="@+id/salesProductsListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </TableLayout>
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp" />
 </LinearLayout>

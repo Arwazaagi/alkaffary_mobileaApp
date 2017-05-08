@@ -1,60 +1,67 @@
 <resources>
-    <string name="app_name">Alkaffary</string>
+    <string name="app_name">القفاري</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">الإعدادات</string>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">التسوق بالجملة</string>
+    <string name="title_notifications">تنبيهات</string>
     <string name="title_activity_navigate">Navigate</string>
-    <string name="title_shoppingCart">Shopping cart</string>
+    <string name="title_shoppingCart">عربة التسوق</string>
 
-    <string name="title_activity_register">register</string>
+    <string name="title_activity_register">تسجيل</string>
 
-    <string name="title_activity_stors">stores</string>
+    <string name="title_activity_stors">الفروع</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_search">Search</string>
 
-    <string name="notifications_empty">You don\'t have notifications know </string>
-    <string name="title_activity_shopping_cart">shopping_cart</string>
-    <string name="empty_cart">Your cart is empty</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_search">بحث</string>
+
+    <string name="notifications_empty">لايوجد لديك تنبيهات </string>
+    <string name="title_activity_shopping_cart">عربة التسوق</string>
+    <string name="empty_cart">عربة التسوق فارغة </string>
+    <string name="title_activity_login">تسجيل الدخول</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password </string>
-    <string name="action_sign_in">Sign in </string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
+    <string name="prompt_email">البريد الإلكتروني </string>
+    <string name="prompt_password">الرمز السري  </string>
+    <string name="action_sign_in">تسجيل دخول </string>
+    <string name="action_sign_in_short"> تسجيل دخول</string>
+    <string name="error_invalid_email">البريد الإلكتروني غير صحيح</string>
+    <string name="error_invalid_password">الرمز السري ضعيف</string>
+    <string name="error_incorrect_password">الرمز السري غير صحيح</string>
+    <string name="error_field_required">هذه الخانة مطلوبة</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="prompt_firstName">First name</string>
-    <string name="prompt_lastName">Last name</string>
+
     <string name="prompt_phoneNumber">Phone number</string>
     <string name="title_activity_maps">Map</string>
 
     <string name="lostpassword">If you lost your password please contact <a href="mailto:support@cleverfinger.com.au?Subject=Lost%20Password" target="_top">send an email </a></string>
     <string name="my_link"><a href="https://twitter.com/HighPoint_SA?lang=ar">twitter highpint!</a></string>
-    <string name="register_button_title">Register</string>
-    <string name="title_edit_profile">Edit Profile</string>
-    <string name="title_orders">Orders</string>
-    <string name="Maintenance_and_instillation">Maintenance and instillation</string>
+    <string name="register_button_title">تسجيل</string>
+    <string name="title_edit_profile">تعديل الملف الشخصي</string>
+    <string name="title_orders">الطلبات</string>
+    <string name="Maintenance_and_instillation">التركيب والصيانة</string>
+    <string name="full_name">الإسم كامل</string>
+    <string name="first_phone_number">رقم الجوال</string>
+    <string name="second_phone_number">رقم جوال إضافي</string>
+    <string name="products">المنتجات</string>
+    <string name="offers">العروض</string>
+    <string name="maintenance_and_installation">التركيب والصيانة</string>
+    <string name="wholesale">البيع بالجملة</string>
+    <string name="stores">الفروع</string>
+    <string name="about_us">من نحن</string>
+    <string name="contact_us">التواصل معانا</string>
 
 
 </resources>

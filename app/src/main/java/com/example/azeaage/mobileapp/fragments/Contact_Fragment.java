@@ -1,4 +1,4 @@
-package com.example.azeaage.mobileapp;
+package com.example.azeaage.mobileapp.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,10 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.azeaage.mobileapp.ExpandableListDataPump;
+import com.example.azeaage.mobileapp.R;
+import com.example.azeaage.mobileapp.adapters.Socialmedail_adpter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -10,16 +10,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-      >
+        android:paddingTop="10dp">
 
         <TextView
-            android:id="@+id/orderNumberTV"
+            android:id="@+id/Location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.55"
             android:paddingLeft="20dp"
-            android:text="#300000008 "
             android:textSize="20dp" />
 
         <TextView
@@ -31,6 +29,13 @@
             android:text="on delivery "
             android:textSize="20dp" />
 
+        <!--   <Button
+            android:id="@+id/setLocatiobnB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.55"
+            android:text="set location" />
+-->
     </LinearLayout>
 
 </LinearLayout>

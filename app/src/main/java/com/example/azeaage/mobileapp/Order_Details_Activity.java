@@ -5,8 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.azeaage.mobileapp.adapters.productList;
+import com.example.azeaage.mobileapp.fragments.MapsActivity;
 
 import java.util.ArrayList;
 
@@ -22,6 +26,7 @@ public class Order_Details_Activity extends AppCompatActivity {
     private int mData;
     TextView branchCode,phoneNum,invoiceNum,creationDate;
      SalesOrders salesOrders;
+    String DocNum;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,12 +36,26 @@ public class Order_Details_Activity extends AppCompatActivity {
         Intent i = getIntent();
         ListView product_list = (ListView)findViewById(R.id.products_listview);
 
-        int position=i.getIntExtra("salesOrder",0);
-
+       // int position=i.getIntExtra("salesOrder",0);
+        salesOrders=(SalesOrders) getIntent().getSerializableExtra("salesOrder");
+        DocNum=salesOrders.getSAPInvoiceNo();
+              System.out.println("Incoive num in order deyiales "+DocNum);
 
         invoiceNum=(TextView)findViewById(R.id.invoice_num_tv);
         creationDate=(TextView)findViewById(R.id.creation_date_tv);
-        salesOrders= Profile.salesOrders[position+1];
+        Button locationB=(Button)findViewById(R.id.setLocation);
+
+        locationB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mapIntent=new Intent(getApplicationContext(),MapsActivity.class);
+                mapIntent.putExtra("docNum",DocNum);
+                mapIntent.putExtra("setInvoiceLocation",'I');
+
+                startActivity(mapIntent);
+            }
+        });
+       /* salesOrders= Profile.salesOrders[position+1];
         TextView[]textViews=new TextView[5];
         invoiceNum.setText(salesOrders.getSAPInvoiceNo()+"");
         creationDate.setText(salesOrders.getOrderDate().toString());
@@ -64,7 +83,7 @@ public class Order_Details_Activity extends AppCompatActivity {
             tableLayout.addView(tableRow);
         }
        // setContentView(tableLayout);*/
-      product_list.setAdapter(new productList(salesOrders.getSalesOrderDetails(),getApplicationContext()));
+     /* product_list.setAdapter(new productList(salesOrders.getSalesOrderDetails(),getApplicationContext()));
 
         product_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -75,7 +94,7 @@ public class Order_Details_Activity extends AppCompatActivity {
                 product_intent.putExtra("product",products);
                 startActivity(product_intent);
             }
-        });
+        });*/
 
     }
 

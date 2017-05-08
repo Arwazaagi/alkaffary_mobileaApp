@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -29,11 +30,11 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.azeaage.mobileapp.fragments.MapsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import objects.Customer;
 
@@ -70,9 +71,12 @@ public class registerActivity extends AppCompatActivity implements LoaderCallbac
     private View mProgressView;
     private View mLoginFormView;
 
+
+
     //input from user
     String fullName,last_Name,Email,Phone_number,Password;
     Customer new_Customer;
+    String result= null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +86,12 @@ public class registerActivity extends AppCompatActivity implements LoaderCallbac
         fullNameView=(AutoCompleteTextView)findViewById(R.id.fullName);
         firstPhoneView=(AutoCompleteTextView)findViewById(R.id.Phone_num1);
         secondPhoneView=(AutoCompleteTextView)findViewById(R.id.Phone_num2);
-
+        Typeface typeface=Typeface.createFromAsset(getAssets(),"fonts/Cairo-SemiBold.ttf");
+        mEmailView.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Cairo-SemiBold.ttf"));
+       // ((TextInputLayout) findViewById(R.id.email)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Cairo-SemiBold.ttf"));
+        font f=new font();
+        f.ChangeFontToLight(mEmailView,getBaseContext());
+        f.ChangeFontToLight(mPasswordView,getBaseContext());
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -409,23 +418,26 @@ public class registerActivity extends AppCompatActivity implements LoaderCallbac
                // mapsActivity.setCustomer(new_Customer);
               /*   Intent maps_intent = new Intent(getApplication(), MapsActivity.class);
                maps_intent.putExtra("customer",new_Customer);*/
-                background b= new background(getBaseContext());
-                String result= null;
-                try {
-                    result = b.execute("register",new_Customer.getFull_name(),new_Customer.getEmail(),new_Customer.getPassword(),new_Customer.getFirstPhone(),new_Customer.getSecondPhone(),"Riyadh","Riyadh","24.703002, 46.723201").get();
+              //  background b= new background(getBaseContext());
 
+
+                    /*result = b.execute("register",new_Customer.getFull_name(),new_Customer.getEmail(),new_Customer.getPassword(),new_Customer.getFirstPhone(),new_Customer.getSecondPhone(),"Riyadh","Riyadh","24.703002, 46.723201").get();
+                    System.out.println(result+"  response");
                     if(result.contains("Error")) {
                         Toast.makeText(getApplication(), "حدث خطأ اثناء التسجيل ارجو التسجيل مره اخرى", Toast.LENGTH_LONG).show();
-                    }else {
+                    }
+                    else {*/
 
                         // set Fragmentclass Arguments
-                        Intent main_intent = new Intent(getApplication(),MainActivity.class);
+                        Intent main_intent = new Intent(getApplication(),MapsActivity.class);
+                        main_intent.putExtra("customer", new_Customer);
+
                         startActivity(main_intent);
                         finish();
-                    }
-                } catch (InterruptedException | ExecutionException e) {
+                 /*
+                 catch (InterruptedException | ExecutionException e) {
                     e.printStackTrace();
-                }
+                }*/
 
 
             } else {

@@ -1,4 +1,4 @@
-package com.example.azeaage.mobileapp;
+package com.example.azeaage.mobileapp.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,28 +7,48 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.azeaage.mobileapp.R;
+import com.example.azeaage.mobileapp.background;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Wholesale_Fragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- */
-public class Wholesale_Fragment extends Fragment {
+import java.util.concurrent.ExecutionException;
+
+
+public class Offers_Fragment extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
     private OnFragmentInteractionListener mListener;
 
-    public Wholesale_Fragment() {
+    public Offers_Fragment() {
         // Required empty public constructor
     }
 
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        onButtonPressed("Wholesale");
-        return inflater.inflate(R.layout.fragment_wholesale_, container, false);
+        onButtonPressed("offers");
+        View view=inflater.inflate(R.layout.fragment_offers_, container, false);
+
+        background b= new background(getContext());
+        try {
+            String result = b.execute("GetInvoiceByDocNum","11600716").get();
+            System.out.println(result+"response ----");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -69,6 +89,4 @@ public class Wholesale_Fragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(String data);
     }
-
-
 }

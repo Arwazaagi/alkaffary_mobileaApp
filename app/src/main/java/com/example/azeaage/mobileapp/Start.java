@@ -20,10 +20,14 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         Button register_Button = (Button)findViewById(R.id.button_register);
         login_Button.setOnClickListener(this);
         register_Button.setOnClickListener(this);
-        typeface1=Typeface.createFromAsset(getAssets(),"fonts/cerbeticabold.ttf");
-        typeface2=Typeface.createFromAsset(getAssets(),"fonts/cerbetica_regular.ttf");
+        font f=new font();
+        f.ChangeFontToBold(login_Button,getBaseContext());
+        f.ChangeFontToBold(register_Button,getBaseContext());
+        /*
+        typeface1=Typeface.createFromAsset(getAssets(),"fonts/Cairo-SemiBold.ttf");
+        typeface2=Typeface.createFromAsset(getAssets(),"fonts/cairo-light.ttf");
       login_Button.setTypeface(typeface1);
-      register_Button.setTypeface(typeface2);
+      register_Button.setTypeface(typeface2);*/
         /*  new Handler().postDelayed(new Runnable() {
 
             @Override
@@ -56,13 +60,13 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
             case  R.id.button_login :
                 Intent login_intent = new Intent(getApplication(), LoginActivity.class);
                 startActivity(login_intent);
-                finish();
+
 
                 break;
             case R.id.button_register:
                 Intent register_intent = new Intent(getApplication(), registerActivity.class);
                 startActivity(register_intent);
-                finish();
+
                 break;
         }
 
