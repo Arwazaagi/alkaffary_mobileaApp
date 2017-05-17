@@ -34,7 +34,7 @@ public class Profile extends AppCompatActivity {
     LatLng latLng=null;
     Products products[];
     userSessionManeger session;
-    String customerPhone,DocNum,Latitude,Longitude,address;
+    String customerPhone,DocNum,Latitude,Longitude,address,DocDate,total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,36 +57,27 @@ public class Profile extends AppCompatActivity {
                 System.out.println(customerPhone + " customer fon");
                 String result = b.execute("GetInvoicesByPhone", "0552959085").get();
                 result = result.substring(result.indexOf('=') + 1, result.indexOf(';'));
-
-
                 JSONArray jsonarray = new JSONArray(result);
+                System.out.println("Length of json "+jsonarray.length());
                 for (int i = 0; i < jsonarray.length(); i++) {
                     JSONObject jsonobject = jsonarray.getJSONObject(i);
                     DocNum = jsonobject.getString("DocNum");
                     Latitude = jsonobject.getString("Latitude");
                     Longitude = jsonobject.getString("Longitude");
-                    background b1 = new background(getBaseContext());
-                    String res = null;
+                    address=jsonobject.getString("U_Address");
+                    DocDate=jsonobject.getString("DocDate");
+                    DocDate=DocDate.substring(0,4)+"/"+DocDate.substring(4,6)+"/"+DocDate.substring(6,8);//convert the date in readable format
+                    total=jsonobject.getString("DocTotal");
 
-                    res = b1.execute("GetInvoiceByDocNum", DocNum).get();
-
-                    if (!res.contains("Error")) {
-                        res = res.substring(res.indexOf('=') + 1, res.indexOf(';'));
+                    salesOrders = new SalesOrders(DocNum, Latitude, Longitude, address,DocDate,total);
+                    SalesOrdersList.add(salesOrders);
 
 
-                        JSONObject jsonobject1 = new JSONObject(res);
-                        DocNum = jsonobject1.getString("DocNum");
-                        Latitude = jsonobject1.getString("Latitude");
-                        Longitude = jsonobject1.getString("Longitude");
-                        address = jsonobject1.getString("U_Address");
-                        salesOrders = new SalesOrders(DocNum, Latitude, Longitude, address);
-                        SalesOrdersList.add(salesOrders);
-                    }
                 }
             } catch (JSONException | InterruptedException | ExecutionException e1) {
             e1.printStackTrace();
         }
-
+        System.out.println("Length of invoices "+SalesOrdersList.size());
 
         //ArrayList<SalesOrderDetails> salesOrderDetails;
         listView.setAdapter(new orderList(SalesOrdersList,getApplicationContext()));

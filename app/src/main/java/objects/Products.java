@@ -8,12 +8,18 @@ import java.io.Serializable;
 
 public class Products implements Serializable {
     private int ProductCode;
+    private String productName;
     private String ProductName_Ar;
     private String ProductName_En;
     private String ProductGroup;//EX : ورق جدران , باركية
     private String ProductType ;
     private double Price;
     private boolean isActive;
+    private Double priceBeforeDisc;
+    private Double priceAfterDisc;
+    private String UOM;
+    private Double qty;
+    private String lineTotal;
 
     public Products(int productCode, String productName_Ar, String productName_En, String productGroup, String productType, double price, boolean isActive) {
         ProductCode = productCode;
@@ -23,6 +29,63 @@ public class Products implements Serializable {
         ProductType = productType;
         Price = price;
         this.isActive = isActive;
+    }
+
+    public Products(String productName, Double priceBeforeDisc, Double priceAfterDisc, String UOM, Double qty,String lineTotal) {
+        this.productName = productName;
+        this.priceBeforeDisc = priceBeforeDisc;
+        this.priceAfterDisc = priceAfterDisc;
+        this.UOM = UOM;
+        this.qty = qty;
+        this.lineTotal=lineTotal;
+    }
+
+    public String getLineTotal() {
+        return lineTotal;
+    }
+
+    public void setLineTotal(String lineTotal) {
+        this.lineTotal = lineTotal;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public Double getPriceBeforeDisc() {
+        return priceBeforeDisc;
+    }
+
+    public void setPriceBeforeDisc(Double priceBeforeDisc) {
+        this.priceBeforeDisc = priceBeforeDisc;
+    }
+
+    public Double getPriceAfterDisc() {
+        return priceAfterDisc;
+    }
+
+    public void setPriceAfterDisc(Double priceAfterDisc) {
+        this.priceAfterDisc = priceAfterDisc;
+    }
+
+    public String getUOM() {
+        return UOM;
+    }
+
+    public void setUOM(String UOM) {
+        this.UOM = UOM;
+    }
+
+    public Double getQty() {
+        return qty;
+    }
+
+    public void setQty(Double qty) {
+        this.qty = qty;
     }
 
     public int getProductCode() {
@@ -85,12 +148,17 @@ public class Products implements Serializable {
     public String toString() {
         return "Products{" +
                 "ProductCode=" + ProductCode +
+                ", productName='" + productName + '\'' +
                 ", ProductName_Ar='" + ProductName_Ar + '\'' +
                 ", ProductName_En='" + ProductName_En + '\'' +
                 ", ProductGroup='" + ProductGroup + '\'' +
                 ", ProductType='" + ProductType + '\'' +
                 ", Price=" + Price +
                 ", isActive=" + isActive +
+                ", priceBeforeDisc=" + priceBeforeDisc +
+                ", priceAfterDisc=" + priceAfterDisc +
+                ", UOM='" + UOM + '\'' +
+                ", qty=" + qty +
                 '}';
     }
 }

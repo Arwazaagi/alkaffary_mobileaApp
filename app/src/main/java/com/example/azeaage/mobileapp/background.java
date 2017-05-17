@@ -1,5 +1,6 @@
 package com.example.azeaage.mobileapp;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -15,6 +16,12 @@ public class background extends AsyncTask <String ,Void ,String> {
     private ProgressDialog dialog ;
     private final String tokenKey="0DE4EA23-6420-43C2-B853-18E8D6B32837";
 
+    AlertDialog alertDialog;
+    @Override
+    protected void onPreExecute() {
+        alertDialog=new AlertDialog.Builder(context).create();
+        alertDialog.setTitle("Login Information");
+    }
     public background(Context context) {
         this.context = context;
         appCompatActivity=(AppCompatActivity)new AppCompatActivity();
@@ -56,6 +63,9 @@ public class background extends AsyncTask <String ,Void ,String> {
                 break;
             case "SaveGPSLocation":
                 result=callSoap.SaveGPSLocation(voids[1],voids[2],voids[3]);
+                break;
+            case "GetInvoiceDetailsByDocNum":
+                result=callSoap.GetInvoiceDetailsByDocNum(voids[1]);
                 break;
         }
         return result;

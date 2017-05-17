@@ -10,9 +10,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.azeaage.mobileapp.adapters.productList;
+import com.example.azeaage.mobileapp.adapters.salesProductsAdapter;
 import com.example.azeaage.mobileapp.fragments.MapsActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import objects.Products;
 import objects.SalesOrderDetails;
@@ -23,10 +30,13 @@ import objects.SalesOrders;
  */
 
 public class Order_Details_Activity extends AppCompatActivity {
-    private int mData;
-    TextView branchCode,phoneNum,invoiceNum,creationDate;
+
+    TextView invoiceNum,creationDate,locationTV,invoiceNumTV,totalTV;
      SalesOrders salesOrders;
-    String DocNum;
+    String DocNum,proName,UOM;
+    Double proPriceBD,proPriceAD, proQty;
+    ArrayList<Products>productsArrayList;
+    Products product;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,9 +53,27 @@ public class Order_Details_Activity extends AppCompatActivity {
 
         invoiceNum=(TextView)findViewById(R.id.invoice_num_tv);
         creationDate=(TextView)findViewById(R.id.creation_date_tv);
-        Button locationB=(Button)findViewById(R.id.setLocation);
+        TextView price_TV = (TextView) findViewById(R.id.price_tv);
+        locationTV=(TextView)findViewById(R.id.locationTV);
+        TextView invoice_tv=(TextView)findViewById(R.id.invoice_tv);
+        invoiceNumTV=(TextView)findViewById(R.id.invoice_num);
+        totalTV=(TextView)findViewById(R.id.totalPrice);
 
-        locationB.setOnClickListener(new View.OnClickListener() {
+        font f =new font();
+        f.ChangeFontToBold(invoiceNum,this);
+        f.ChangeFontToBold(creationDate,this);
+        f.ChangeFontToLight(price_TV,this);
+        f.ChangeFontToLight(locationTV,this);
+        f.ChangeFontToBold(invoice_tv,this);
+        f.ChangeFontToBold(invoiceNumTV,this);
+        f.ChangeFontToBold(totalTV,this);
+
+       // Button locationB=(Button)findViewById(R.id.setLocation);
+        invoiceNum.setText(salesOrders.getSAPInvoiceNo());
+        creationDate.setText(salesOrders.getOrderDate());
+        price_TV.setText(salesOrders.getOrderTotal()+"");
+        locationTV.setText(salesOrders.getShippingAddress());
+        locationTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent mapIntent=new Intent(getApplicationContext(),MapsActivity.class);
@@ -55,6 +83,52 @@ public class Order_Details_Activity extends AppCompatActivity {
                 startActivity(mapIntent);
             }
         });
+        productsArrayList=new ArrayList<>();
+        background b=new background(getBaseContext());
+        try {
+            String result=b.execute("GetInvoiceDetailsByDocNum",DocNum).get();
+            result = result.substring(result.indexOf('=') + 1, result.indexOf(';'));
+
+
+            JSONArray jsonarray = new JSONArray(result);
+
+            System.out.println("Length of json "+jsonarray.length());
+            for (int a = 0; a < jsonarray.length();a++) {
+                JSONObject jsonobject = jsonarray.getJSONObject(a);
+                proName=jsonobject.getString("ItemName");
+                proPriceBD=Double.parseDouble(jsonobject.getString("PriceBeforeDisc"));
+                proPriceAD=Double.parseDouble(jsonobject.getString("PriceAfterDisc"));
+                UOM=jsonobject.getString("UOM");
+                proQty=Double.parseDouble(jsonobject.getString("Quantity"));
+                String totalLine=jsonobject.getString("LineTotal");
+                product=new Products(proName,proPriceBD,proPriceAD,UOM,proQty,totalLine);
+                productsArrayList.add(product);
+            }
+
+            product_list.setAdapter(new salesProductsAdapter(productsArrayList,getApplicationContext()));
+            product_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent product_intent=new Intent(getApplication().getApplicationContext(),product_activity.class);
+                    // Customer customer=new Customer("arwa","Alzeaagi","arwazeaagi@gmail.com","0556693340","555885");
+
+                 //   product_intent.putExtra("product",productsArrayList.get(position+1));
+                    startActivity(product_intent);
+                }
+            });
+        } catch (InterruptedException | JSONException | ExecutionException e) {
+            e.printStackTrace();
+        }
+       /* locationB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mapIntent=new Intent(getApplicationContext(),MapsActivity.class);
+                mapIntent.putExtra("docNum",DocNum);
+                mapIntent.putExtra("setInvoiceLocation",'I');
+
+                startActivity(mapIntent);
+            }
+        });*/
        /* salesOrders= Profile.salesOrders[position+1];
         TextView[]textViews=new TextView[5];
         invoiceNum.setText(salesOrders.getSAPInvoiceNo()+"");

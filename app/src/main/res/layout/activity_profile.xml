@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.azeaage.mobileapp.Profile">
+    android:orientation="vertical">
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
@@ -14,27 +14,18 @@
         android:background="?android:attr/windowBackground"
         app:menu="@menu/profile_nav"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="33dp" />
+        tools:layout_editor_absoluteY="33dp">
+
+    </android.support.design.widget.BottomNavigationView>
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/navigation">
 
-        <LinearLayout
+        <ListView
+            android:id="@+id/orders_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent" />
 
-            android:layout_marginTop="18dp"
-            android:orientation="horizontal">
 
-            <ListView
-                android:id="@+id/orders_list"
-                android:layout_width="match_parent"
-                android:layout_height="943dp" />
 
-        </LinearLayout>
-    </ScrollView>
 
-</RelativeLayout>
+</LinearLayout>

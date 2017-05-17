@@ -32,13 +32,13 @@ public class product_activity extends AppCompatActivity implements HorizontalNum
         cost=(TextView)findViewById(R.id.price_product);
         discount=(TextView)findViewById(R.id.price_after_discount);
 
-        Intent intent =getIntent();
+    /*    Intent intent =getIntent();
         Products products=(Products) intent.getSerializableExtra("product");
         System.out.println(products);
         name_ar.setText(products.getProductName_Ar());
         name_en.setText(products.getProductName_En());
         //color.setText(products.get);
-        cost.setText(products.getPrice()+"");
+        cost.setText(products.getPrice()+"");*/
     }
 
     @Override

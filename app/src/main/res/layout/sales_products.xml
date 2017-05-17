@@ -1,55 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ebebeb">
 
-    <ImageView
-        android:id="@+id/productImage"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginLeft="20dp"
-        app:srcCompat="@drawable/table" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/product_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
+        android:layout_alignEnd="@+id/tableRow"
+        android:layout_alignRight="@+id/tableRow"
+        android:layout_alignTop="@+id/tableRow"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="right"
+        android:text="TextView"
+        android:textSize="36sp" />
 
-        android:layout_marginTop="15dp"
-        android:layout_toEndOf="@+id/productImage"
-        android:layout_toRightOf="@+id/productImage"
-        android:orientation="vertical">
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="right|center"
+        android:padding="10dp"
+        android:background="#FFF"
+        android:id="@+id/tableRow">
 
-        <TextView
-            android:id="@+id/productNameAr"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            android:text="Table"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/Price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/productName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textSize="20sp"
 
-        <TextView
-            android:id="@+id/ProductNameEn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
+                android:textColor="@color/colorPrimaryBlack"
+                android:textStyle="bold" />
 
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/quitity_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/colorPrimaryBlack"
+                android:gravity="right"
+                android:text="TextView"
+                android:textSize="20sp" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/PriceBefor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:gravity="right"
 
-</RelativeLayout>
+                android:textColor="@color/colorPrimaryBlack"
+                android:text="TextView"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/PriceAfter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:textColor="@color/colorPrimaryBlack"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/TotalPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:textColor="@color/colorPrimaryBlack"
+                android:text="السعر الإجمالي "
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/TotalPriceTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+
+                android:textColor="@color/colorPrimaryBlack"
+                android:gravity="right"
+                android:text="TextView"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+
+            android:layout_height="150dp"
+            android:background="@android:drawable/dialog_holo_light_frame"
+
+            android:src="@drawable/squere_image"
+            />
+
+    </TableRow>
+
+</LinearLayout>

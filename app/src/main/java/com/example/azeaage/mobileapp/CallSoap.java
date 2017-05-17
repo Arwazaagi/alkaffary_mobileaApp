@@ -46,6 +46,25 @@ class CallSoap {
         request.addProperty("longitude",longitude);
         return connectToService();
     }
+    public String GetInvoiceDetailsByDocNum(String docNum){
+        SOAP_ACTION="http://tempuri.org/IAlKaffaryMobileService/GetInvoiceDetailsByDocNum";
+        String OPERATION_NAME="GetInvoiceDetailsByDocNum";
+
+        request= new SoapObject(WSDL_TARGET_NAMESPACE,OPERATION_NAME);
+
+        //the first attribute
+
+        request.addProperty("tokenKey",tokenKey);
+
+        PropertyInfo pi ;
+        pi = new PropertyInfo();
+        pi.setName("docNum");
+        pi.setValue(docNum);
+        pi.setType(Integer.class);
+        request.addProperty(pi);
+
+        return connectToService();
+    }
     public String GetBranchesList(String tokenKey){
         SOAP_ACTION="http://tempuri.org/IAlKaffaryMobileService/GetBranchesList";
         String OPERATION_NAME="GetBranchesList";

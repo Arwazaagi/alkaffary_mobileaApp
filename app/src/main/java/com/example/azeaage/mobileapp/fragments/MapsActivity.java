@@ -53,7 +53,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Circle circle;
     private MarkerOptions marker;
     EditText location_et;
-    Button continuous_button,search_b;
+    Button continuous_button;
     private LatLng latLng;
     String DocNum;
     char callActivity;
@@ -113,12 +113,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this); //this method will start the map service
-         location_et =(EditText)findViewById(R.id.search);
+
        // customer=Register_Activity.new_Customer;
         System.out.println("NewUser"+customer);
-        search_b= (Button)findViewById(R.id.search_b);
         continuous_button=(Button)findViewById(R.id.continuous_button);
-        search_b.setOnClickListener(this);
+
         continuous_button.setOnClickListener(this);
 
 
@@ -165,7 +164,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    private void onSearch(View view){
+   /* private void onSearch(View view){
 
         String location =location_et.getText().toString();
         List<Address>addressesList=null;
@@ -190,7 +189,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
     }
-
+*/
     private void setLocation(LatLng point) {
         mMap.clear();
         marker=new MarkerOptions().position(point).title("Marker");
@@ -289,9 +288,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onClick(View v) {
 
-        if(v.getId()==R.id.search_b)
-        onSearch(v);
-        else if(v.getId()==R.id.continuous_button)
+       /* if(v.getId()==R.id.search_b)
+        onSearch(v);*/
+         if(v.getId()==R.id.continuous_button)
         {
             if(callActivity=='I'){
                 background b=new background(this);

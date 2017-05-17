@@ -1,117 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
 
 
-    <TextView
-        android:id="@+id/invoice_tv"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
 
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="الفاتورة "
-        android:textSize="25dp" />
+        <TextView
+            android:id="@+id/locationTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageView4"
+            android:layout_marginEnd="11dp"
+            android:layout_marginRight="11dp"
+            android:layout_toLeftOf="@+id/imageView4"
+            android:layout_toStartOf="@+id/imageView4"
+            android:text="king abdullah street "
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryBlack"
+            android:textSize="20sp" />
 
-        android:layout_marginTop="10dp"
-        android:stretchColumns="2">
-
-        <TableRow
+        <TextView
+            android:id="@+id/invoice_tv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="right">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0.13"
+            android:gravity="center"
+            android:text="الفاتورة "
+            android:textSize="25sp" />
 
-            <TextView
-                android:id="@+id/invoice_num_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="10300485"
-                android:textSize="20dp"
-                android:layout_marginRight="15dp"/>
+        <TextView
+            android:id="@+id/creation_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/invoice_tv"
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp"
+            android:text="11/10/2016"
 
-            <TextView
-                android:id="@+id/invoice_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="رقم الفاتورة "
-                android:textSize="20dp" />
+            android:textColor="@color/colorPrimaryBlack"
+            android:textSize="20sp" />
 
-        </TableRow>
+        <TextView
+            android:id="@+id/invoice_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/creation_date_tv"
+            android:layout_alignBottom="@+id/creation_date_tv"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:foregroundGravity="right"
+            android:gravity="right"
+            android:text="طلب رقم"
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="right">
+            android:textColor="@color/colorPrimaryBlack"
+            android:textSize="20dp" />
 
-            <TextView
-                android:id="@+id/phone_num_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="0112055777"
-                android:textSize="20dp"
-                android:layout_marginRight="15dp"/>
+        <TextView
+            android:id="@+id/invoice_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/creation_date_tv"
+            android:layout_alignBottom="@+id/creation_date_tv"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="12dp"
+            android:layout_toLeftOf="@+id/invoice_num"
+            android:layout_toStartOf="@+id/invoice_num"
+            android:text="10300485"
 
-            <TextView
-                android:id="@+id/Phone_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="رقم الجوال "
-                android:textSize="20dp" />
+            android:textColor="@color/colorPrimaryBlack"
+            android:textSize="20sp" />
 
-        </TableRow>
+        <TextView
+            android:id="@+id/price_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/totalPrice"
+            android:layout_alignBottom="@+id/totalPrice"
+            android:layout_alignEnd="@+id/invoice_num_tv"
+            android:layout_alignRight="@+id/invoice_num_tv"
+            android:gravity="right"
+            android:text="TextView"
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="right">
+            android:textColor="@color/colorPrimaryBlack"
+            android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/creation_date_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="11/10/2016"
-                android:textSize="20dp"
-                android:layout_marginRight="15dp"/>
+        <TextView
+            android:id="@+id/totalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/creation_date_tv"
+            android:layout_marginTop="13dp"
+            android:text="المجموع"
 
-            <TextView
-                android:id="@+id/creation_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="تاريخ الانشاء"
-                android:textSize="20dp" />
+            android:textColor="@color/colorPrimaryBlack"
+            android:textSize="20sp" />
 
-        </TableRow>
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/totalPrice"
+            android:layout_gravity="right"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="12dp"
+            app:srcCompat="@drawable/ic_location_on_black_24dp" />
+    </RelativeLayout>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/setLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="تحديد موقع التسليم " />
-        </TableRow>
-
-    </TableLayout>
-
-    <TextView
-        android:id="@+id/totalPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="المجموع"
-        android:textSize="20dp" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -121,8 +131,7 @@
         android:id="@+id/products_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="20dp"
-       />
+        android:layout_marginBottom="20dp" />
 
 
 </LinearLayout>

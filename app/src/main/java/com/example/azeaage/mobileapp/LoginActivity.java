@@ -402,7 +402,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                // ID = js.optString(CustomerID);
                // fullName = js.optString(CustomerID);
                 System.out.print("Customer name :"+ fullName+"  ID: "+ID);
-            session.createUserLoginSession(fullName," ",ID,phone1);
+                session.createUserLoginSession(fullName," ",ID,phone1);
                // Customer customer = new Customer(i_ID, S_time, S_startDate, S_endDate, i_bookedSeat, i_monthPrice, i_dayPrice);
                 //scheduleArrayList.add(s);//add the object to array list
              //   TRACK++;

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class SalesOrders implements Serializable{
     private int OrderId;
-    private Date OrderDate;
+    private String OrderDate;
     private String ShippingAddress;
     private String ShippingCity;
     private LatLng locationCoordinate;
@@ -27,20 +27,22 @@ public class SalesOrders implements Serializable{
     private Customer customer;
     private ArrayList<SalesOrderDetails> salesOrderDetails;
     private SalesOrderStatusTra salesOrderStatusTra;
-    private int mData;
-    String lat;
-    String lon;
+    private String lat;
+    private String lon;
+
 
 
     public ArrayList<SalesOrderDetails> getSalesOrderDetails() {
         return salesOrderDetails;
     }
 
-    public SalesOrders(String  SAPInvoiceNo,String lat,String lon , String shippingAddress){
+    public SalesOrders(String  SAPInvoiceNo,String lat,String lon , String shippingAddress,String orderDate,String totalPrice){
         this.SAPInvoiceNo=SAPInvoiceNo;
         this.lat=lat;
         this.lon=lon;
         this.ShippingAddress=shippingAddress;
+        this.OrderDate=orderDate;
+        this.OrderTotal=Double.parseDouble(totalPrice);
     }
     public void setSalesOrderDetails(ArrayList<SalesOrderDetails> salesOrderDetails) {
         this.salesOrderDetails = salesOrderDetails;
@@ -54,7 +56,7 @@ public class SalesOrders implements Serializable{
         this.salesOrderStatusTra = salesOrderStatusTra;
     }
 
-    public SalesOrders(int orderId, Date orderDate, String shippingAddress, String shippingCity, LatLng locationCoordinate,
+    public SalesOrders(int orderId, String orderDate, String shippingAddress, String shippingCity, LatLng locationCoordinate,
                        double orderTotal, String SAPInvoiceNo, String completionCode, boolean isCancelled, String createdBy
                        ) {
         OrderId = orderId;
@@ -69,6 +71,7 @@ public class SalesOrders implements Serializable{
         CreatedBy = createdBy;
 
     }
+
     public String getLat() {
         return lat;
     }
@@ -117,11 +120,11 @@ public class SalesOrders implements Serializable{
         OrderId = orderId;
     }
 
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return OrderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         OrderDate = orderDate;
     }
 
@@ -215,8 +218,7 @@ public class SalesOrders implements Serializable{
                 ", LastModificationDate=" + LastModificationDate +
                 ", customer=" + customer +
                 ", salesOrderDetails=" + salesOrderDetails +
-                ", salesOrderStatusTra=" + salesOrderStatusTra +
-                ", mData=" + mData +
+                ", salesOrderStatusTra=" + salesOrderStatusTra+
                 '}';
     }
 
